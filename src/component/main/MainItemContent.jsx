@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Image, View, Text, TouchableOpacity } from 'react-native';
-import styles from '../../style/styles';
+import mainStyles from '../../style/mainStyles';
+import commonStyles from '../../style/commonStyles';
 
 const MainItemContent = (props) => {
   
@@ -8,13 +9,13 @@ const MainItemContent = (props) => {
   const text = '가나다라마바사 가나다라마바사 가나다라마바사 가나다라마바사 가나다라마바사 가나다라마바사 가나다라마바사 가나다라마바사 가나다라마바사 가나다라마바사 가나다라마바사 가나다라마바사 가나다라마바사 가나다라마바사 가나다라마바사 가나다라마바사 가나다라마바사 가나다라마바사';
 
   return (    
-    <View style={styles().MainItemContentContainer}>
+    <View style={mainStyles().MainItemContentContainer}>
       {text.length <= 60 ? (
-        <Text style={styles(0.031).Font_000}>
+        <Text style={commonStyles(0.031).Font_000}>
           {text}
         </Text>
       ):(
-        <Text style={styles(0.031).Font_000}>          
+        <Text style={commonStyles(0.031).Font_000}>          
           {more ? (
             <>{text}</>
           ) : (

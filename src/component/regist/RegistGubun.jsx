@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, SafeAreaView, TextInput, TouchableOpacity, ScrollView, Image } from 'react-native';
-import styles from '../../style/styles';
+import commonStyles from '../../style/commonStyles';
+
 
 const RegistGubun = (props) => {
-
-  const { left, right } = props;
 
   return (
   
     <View
       style={{
-        marginVertical:8,
+        marginBottom:8,
         flexDirection:'row',
         justifyContent:'space-between'
       }}
@@ -25,7 +24,7 @@ const RegistGubun = (props) => {
           borderRadius:5,
         }}
       >
-        <Text style={styles(0.031).Font_fff}>{left}</Text>
+        <Text style={commonStyles(0.031).Font_fff}>공개</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={{
@@ -38,7 +37,7 @@ const RegistGubun = (props) => {
           borderRadius:5,
         }}
       >
-        <Text style={styles(0.031).Font_1a8cff}>{right}</Text>
+        <Text style={commonStyles(0.031).Font_1a8cff}>비공개</Text>
       </TouchableOpacity>
     </View>
   );  

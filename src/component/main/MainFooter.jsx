@@ -1,8 +1,8 @@
 import React from 'react';
 import { Image, View, Text, TouchableOpacity } from 'react-native';
-import styles from '../../style/styles';
+import mainStyles from '../../style/mainStyles';
+import commonStyles from '../../style/commonStyles';
 import Util from '../../util/Util';
-
 
 const MainFooter = (props) => {
   
@@ -18,34 +18,34 @@ const MainFooter = (props) => {
   };
 
   return (    
-    <View style={styles().MainFooterContainer}>
+    <View style={mainStyles().MainFooterContainer}>
       <TouchableOpacity
-        style={styles().MainFooterButton}
+        style={mainStyles().MainFooterButton}
       >
         <Image 
           source={require('../../assets/icon/newRegist.png')}
-          style={styles().MainFooterImage}
+          style={mainStyles().MainFooterImage}
         />
-        <Text style={styles(0.03).Font_000}>신청하기</Text>
+        <Text style={commonStyles(0.03).Font_000}>신청하기</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles().MainFooterButton}
+        style={mainStyles().MainFooterButton}
       >
         <Image 
           source={require('../../assets/icon/message.png')}
-          style={styles().MainFooterImage}
+          style={mainStyles().MainFooterImage}
         />
-        <Text style={styles(0.03).Font_000}>댓글달기</Text>
+        <Text style={commonStyles(0.03).Font_000}>댓글달기</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles().MainFooterButton}
+        style={mainStyles().MainFooterButton}
         onPress={() => fetchNotToken()}
       >
         <Image 
           source={require('../../assets/icon/white_heart.png')}
-          style={styles().MainFooterImage}
+          style={mainStyles().MainFooterImage}
         />
-        <Text style={styles(0.03).Font_000}>좋아요</Text>
+        <Text style={commonStyles(0.03).Font_000}>좋아요</Text>
       </TouchableOpacity>
     </View>    
   );  

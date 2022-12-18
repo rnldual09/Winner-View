@@ -5,15 +5,15 @@ import MainItemContent from './MainItemContent';
 import HashTag from './HashTag';
 import MainFooter from './MainFooter';
 import MainPicture from './MainPicture';
-import styles from '../../style/styles';
+import commonStyles from '../../style/commonStyles';
 
 const MainItem = (props) => {
   
   const {item} = props;
 
   return (    
-    <View style={styles().CommonContainer}>
-      <View style={styles().CommonSubContainer}>
+    <View style={commonStyles().CommonContainer}>
+      <View style={commonStyles().CommonSubContainer}>
        <MainItemHeader /> 
        <MainPicture />
        <MainItemContent />

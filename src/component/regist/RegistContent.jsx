@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, FlatList, SafeAreaView, TextInput, TouchableOpacity, ScrollView, Image } from 'react-native';
-import styles from '../../style/styles';
 
 const RegistSubject = (props) => {
 

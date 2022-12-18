@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, FlatList, SafeAreaView, TextInput, TouchableOpacity, ScrollView, Image } from 'react-native';
-import styles from '../../style/styles';
+import commonStyles from '../../style/commonStyles';
 
 const RegistPicture = () => {
 
@@ -38,7 +38,7 @@ const RegistPicture = () => {
               marginBottom:5,
             }}  
           />
-          <Text style={styles(0.028).Font_000}>사진추가</Text>
+          <Text style={commonStyles(0.028).Font_000}>사진추가</Text>
         </TouchableOpacity>    
       </View>
       <ScrollView horizontal={true}>        
