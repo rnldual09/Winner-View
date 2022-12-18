@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, View, Text, TouchableOpacity } from 'react-native';
 import styles from '../../style/styles';
-import axios from 'axios';
+import Util from '../../util/Util';
 
 
 const MainFooter = (props) => {
@@ -10,21 +10,11 @@ const MainFooter = (props) => {
 
   const fetchNotToken = async (  ) => {
   
-    const url = 'http://localhost:8080/post/postList.do';
-    
-    fetch(url, 
-    {
-      method : 'POST',
-      headers: {'Content-Type':'application/json'},
-    }).then(function(response) {
-      return response.json();                    
-    }).then(function (responseText) {      
-      
-      console.log(responseText);
-  
-    }).catch(function(err){
-      console.log(err);
-    });
+    const url = '/post/postList.do';
+    const data = {};
+
+    const responseText = await Util.fetchWithNotToken(url, data);    
+    console.log(responseText);
   };
 
   return (    

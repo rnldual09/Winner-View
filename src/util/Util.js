@@ -1,26 +1,39 @@
-const fetchNotToken = async (  ) => {
+const fetchWithNotToken = async ( url, data ) => {
 
-  const url = 'https://http://localhost:8080/test.do';
-  const data = {'data1':'data_1','data2':'data_2','data3':'data_3'};
-  
-  fetch(url, 
-  {
-    method : 'POST',
-    body : JSON.stringify(data),
-    headers: { 'Content-Type': 'application/json'}
-  }).then(function(response) {
-    return response.json();                    
-  }).then(function (responseText) {      
-    
-    console.log(responseText);
+  const result = await fetch('http://localhost:8080' + url, 
+                      {
+                        method : 'POST',
+                        body : JSON.stringify(data),
+                        headers: { 'Content-Type': 'application/json'}
+                      }).then(function(response) {
+                        return response.json();                    
+                      }).then(async function (responseText) {      
+                        return responseText;
+                      }).catch(function(err){
+                        console.log(err);
+                      });
 
-  }).catch(function(err){
-    console.log(err);
-    reject(err);
-  });
-
+  return result;
 };
 
-const Util = {  };
+const fetchWithToken = async ( url, data, token ) => {
+
+  const result = await fetch('http://localhost:8080' + url, 
+                      {
+                        method : 'POST',
+                        body : JSON.stringify(data),
+                        headers: { 'Content-Type': 'application/json', 'token' :token }
+                      }).then(function(response) {
+                        return response.json();                    
+                      }).then(async function (responseText) {      
+                        return responseText;
+                      }).catch(function(err){
+                        console.log(err);
+                      });
+
+  return result;
+};
+
+const Util = { fetchWithNotToken, fetchWithToken };
 
 export default Util;
