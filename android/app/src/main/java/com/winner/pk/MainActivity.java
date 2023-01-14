@@ -1,4 +1,4 @@
-package com.winner;
+package com.winner.pk;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

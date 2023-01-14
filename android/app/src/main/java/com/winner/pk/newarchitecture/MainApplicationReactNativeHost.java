@@ -1,4 +1,4 @@
-package com.winner.newarchitecture;
+package com.winner.pk.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.winner.BuildConfig;
-import com.winner.newarchitecture.components.MainComponentsRegistry;
-import com.winner.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.winner.pk.BuildConfig;
+import com.winner.pk.newarchitecture.components.MainComponentsRegistry;
+import com.winner.pk.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

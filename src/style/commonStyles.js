@@ -31,6 +31,11 @@ const commonStyles = (param) => StyleSheet.create({
     fontSize:windowWidth * param,
     fontWeight:'500'
   },
+  Font_999:{
+    color:'#999',
+    fontSize:windowWidth * param,
+    fontWeight:'500'
+  },
   Font_fff:{
     color:'#fff',
     fontSize:windowWidth * param,
@@ -41,6 +46,13 @@ const commonStyles = (param) => StyleSheet.create({
     fontSize:windowWidth * param,
     fontWeight:'500'
   },
+  commonBtn:{
+    width:'100%',
+    height:windowHeight*0.05,
+    backgroundColor:'#1a8cff',
+    alignItems:'center',
+    justifyContent:'center'
+  }
 
 });
 

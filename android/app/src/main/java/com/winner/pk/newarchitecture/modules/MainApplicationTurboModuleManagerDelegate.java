@@ -1,4 +1,4 @@
-package com.winner.newarchitecture.modules;
+package com.winner.pk.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;
