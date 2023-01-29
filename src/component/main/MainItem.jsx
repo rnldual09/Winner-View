@@ -9,15 +9,15 @@ import commonStyles from '../../style/commonStyles';
 
 const MainItem = (props) => {
   
-  const {item} = props;
+  const { item } = props;
 
   return (    
     <View style={commonStyles().CommonContainer}>
       <View style={commonStyles().CommonSubContainer}>
-       <MainItemHeader /> 
-       <MainPicture />
-       <MainItemContent />
-       <HashTag />
+       <MainItemHeader item={item} /> 
+       <MainPicture imglist={item.imglist} />
+       <MainItemContent item={item}/>
+       <HashTag item={item} />
        <MainFooter />
       </View>
     </View>    

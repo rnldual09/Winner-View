@@ -1,19 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Image, View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import mainStyles from '../../style/mainStyles';
 import commonStyles from '../../style/commonStyles';
 
 const MainPicture = (props) => {
   
-  const {item} = props;
+  const { imglist } = props;
 
   return (    
-    <View style={mainStyles().MainPictureContainer}>
-      <Image 
-        source={require('../../assets/icon/buni.jpeg')}
-        style={commonStyles(0.87).CommonImage}
-      />
-    </View>    
+    <>
+      {imglist == [] ? (
+        null
+      ) : (
+        <View style={mainStyles().MainPictureContainer}>
+          {imglist.map((item, index) => (            
+            <Image
+              key={index}
+              style={commonStyles(0.87).CommonImage}
+              source={{ uri: 'http://localhost:8080/post/postImageView.do?imgFileName=' + item.svrFile}}
+            />
+          ))}
+        </View> 
+      )}    
+    </>
   );  
 }
 

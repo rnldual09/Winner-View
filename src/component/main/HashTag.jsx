@@ -1,30 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Image, View, Text, TouchableOpacity } from 'react-native';
 import mainStyles from '../../style/mainStyles';
 import commonStyles from '../../style/commonStyles';
 
 const HashTag = (props) => {
-  
+
+  useEffect(() => {
+    checkNull();
+  }, []);
+
   const {item} = props;
+  const [hashTag, setHashTag] = useState([]);
+
+  const checkNull = () => {
+    if((item.hashTag)){
+      setHashTag((item.hashTag).split(','));
+    }
+  };
 
   return (    
-    <View style={mainStyles().HashTagContainer}>      
-      <TouchableOpacity style={{marginRight:5}}>
-        <Text style={commonStyles(0.031).Font_1a8cff}># 축구</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={{marginRight:5}}>
-        <Text style={commonStyles(0.031).Font_1a8cff}># 풋살</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={{marginRight:5}}>
-        <Text style={commonStyles(0.031).Font_1a8cff}># 좋은사람</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={{marginRight:5}}>
-        <Text style={commonStyles(0.031).Font_1a8cff}># 좋은자리</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={{marginRight:5}}>
-        <Text style={commonStyles(0.031).Font_1a8cff}># 좋은시간</Text>
-      </TouchableOpacity>
-    </View>    
+    <>
+      {hashTag == [] ? (
+        null
+      ) : (
+        <View style={mainStyles().HashTagContainer}>
+          {hashTag.map((item, index) => (            
+            <TouchableOpacity
+              key={index}
+              style={{marginRight:5}}
+            >
+              <Text style={commonStyles(0.031).Font_1a8cff}>#{item}</Text>
+            </TouchableOpacity>            
+          ))}   
+        </View> 
+      )}    
+    </>
   );  
 }
 

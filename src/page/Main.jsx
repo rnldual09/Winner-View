@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, FlatList, useCallback } from 'react-native';
+import React, { useState, useCallback } from 'react';
+import { View, Text, FlatList } from 'react-native';
 import MainItem from '../component/main/MainItem'
 import MainHeader from '../component/main/MainHeader';
 import Util from '../util/Util';
@@ -25,7 +25,7 @@ const Main = () => {
     const token = '';
 
     const response = await Util.fetchWithToken(url, data, token);
-    console.log('response', response);
+    setBoardData(response);
   };
   
   const RENDERITEM = ({item}) => {    
@@ -40,7 +40,7 @@ const Main = () => {
       <FlatList
         data={boardData}
         renderItem={RENDERITEM}
-        keyExtractor={item => item.boardSeq}
+        keyExtractor={item => item.postSeq}
       />
     </>
   );  

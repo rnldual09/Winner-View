@@ -1,7 +1,8 @@
 import { Dimensions, StyleSheet } from "react-native";
+import { RFPercentage } from "react-native-responsive-fontsize";
 
-export const windowWidth = Dimensions.get("window").width;
-export const windowHeight = Dimensions.get("window").height;
+const windowWidth = Dimensions.get("window").width;
+const windowHeight = Dimensions.get("window").height;
 
 const commonStyles = (param) => StyleSheet.create({
   
@@ -48,11 +49,20 @@ const commonStyles = (param) => StyleSheet.create({
   },
   commonBtn:{
     width:'100%',
-    height:windowHeight*0.05,
+    height:'100%',
     backgroundColor:'#1a8cff',
     alignItems:'center',
     justifyContent:'center'
-  }
+  },
+  commonErrMsgContainer:{
+    alignItems:'flex-start',
+    justifyContent:'center',
+    marginTop:windowHeight * 0.008
+  },
+  commonErrMsgText:{
+    color:'red',
+    fontSize:RFPercentage(1.5),    
+  },
 
 });
 
