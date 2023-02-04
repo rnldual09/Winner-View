@@ -16,7 +16,7 @@ const MainPicture = (props) => {
           {imglist.map((item, index) => (            
             <Image
               key={index}
-              style={commonStyles(0.87).CommonImage}
+              style={commonStyles(42).CommonImage}
               source={{ uri: 'http://localhost:8080/post/postImageView.do?imgFileName=' + item.svrFile}}
             />
           ))}

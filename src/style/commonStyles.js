@@ -11,8 +11,8 @@ const commonStyles = (param) => StyleSheet.create({
   },
   CommonImage:{
     resizeMode:'cover',
-    width:windowWidth * param,
-    height:windowWidth * param,
+    width:RFPercentage(param),
+    height:RFPercentage(param),
   },  
   CommonContainer:{
     backgroundColor:'#f0f0f5',
@@ -29,22 +29,22 @@ const commonStyles = (param) => StyleSheet.create({
   },
   Font_000:{
     color:'#000',
-    fontSize:windowWidth * param,
+    fontSize:RFPercentage(param),
     fontWeight:'500'
   },
   Font_999:{
     color:'#999',
-    fontSize:windowWidth * param,
+    fontSize:RFPercentage(param),
     fontWeight:'500'
   },
   Font_fff:{
     color:'#fff',
-    fontSize:windowWidth * param,
+    fontSize:RFPercentage(param),
     fontWeight:'500'
   },
   Font_1a8cff:{
     color:'#1a8cff',
-    fontSize:windowWidth * param,
+    fontSize:RFPercentage(param),
     fontWeight:'500'
   },
   commonBtn:{
@@ -57,7 +57,7 @@ const commonStyles = (param) => StyleSheet.create({
   commonErrMsgContainer:{
     alignItems:'flex-start',
     justifyContent:'center',
-    marginTop:windowHeight * 0.008
+    marginTop:windowHeight * 0.01
   },
   commonErrMsgText:{
     color:'red',

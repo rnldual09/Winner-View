@@ -17,19 +17,19 @@ const MainHeader = () => {
         <TouchableOpacity onPress={() => navigation.navigate('게시글작성1')}>
           <Image
             source={require("../../assets/icon/newRegist.png")}
-            style={commonStyles(0.057).CommonImage}
+            style={commonStyles(2.5).CommonImage}
           />
         </TouchableOpacity>
         <TouchableOpacity>
           <Image
             source={require("../../assets/icon/where.png")}
-            style={commonStyles(0.053).CommonImage}
+            style={commonStyles(2.5).CommonImage}
           />
         </TouchableOpacity>
         <TouchableOpacity>
           <Image
             source={require("../../assets/icon/newNotice.png")}
-            style={commonStyles(0.057).CommonImage}
+            style={commonStyles(2.5).CommonImage}
           />
         </TouchableOpacity>
       </View>

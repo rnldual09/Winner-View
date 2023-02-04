@@ -1,3 +1,5 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 const fetchWithNotToken = async ( url, data ) => {
   
   const result = await fetch('http://localhost:8080' + url, 
@@ -34,24 +36,18 @@ const fetchWithToken = async ( url, data, token ) => {
   return result;
 };
 
-const fetchBlob = async ( data ) => {
-
-  const result = await fetch('http://localhost:8080/common/usrProfile.do', 
-                      {
-                        method : 'POST',
-                        body : JSON.stringify(data),
-                        headers: { 'Content-Type': 'application/json' }
-                      }).then(function(response) {
-                        return response.arrayBuffer();                    
-                      }).then(async function (responseText) {      
-                        return responseText;
-                      }).catch(function(err){
-                        console.log(err);
-                      });
-
-  return result;
+// 유저 정보 가져오기
+const getUsrInfo = async () => {
+  const usrInfo = await AsyncStorage.getItem('usrInfo');
+  return usrInfo;
 };
 
-const Util = { fetchWithNotToken, fetchWithToken, fetchBlob };
+// 유저 토큰 가져오기
+const getUsrtoekn = async () => {
+  const token = await AsyncStorage.getItem('token');
+  return token;
+};
+
+const Util = { fetchWithNotToken, fetchWithToken, getUsrInfo, getUsrtoekn };
 
 export default Util;

@@ -12,27 +12,24 @@ const Main = () => {
   useFocusEffect(  
     useCallback(() => {
       
-      getBoardList();
+      getMainList();
 
     }, []),
   );
 
-  // 공지사항
-  const getBoardList = async () => {
+  const getMainList = async () => {
 
+    const usrInfo = await Util.getUsrInfo();
+    const token = await Util.getUsrtoekn();
     const url = '/post/postList.do';
-    const data = {'sessionId':'sqa923'}
-    const token = '';
+    const data = {'sessionId':usrInfo.usrId};
 
     const response = await Util.fetchWithToken(url, data, token);
-    setBoardData(response);
+    setBoardData(response); 
   };
   
-  const RENDERITEM = ({item}) => {    
-    return (
-      <MainItem item={item} />
-    );
-  };
+  // FlatList 로 반복할 컴포넌트
+  const RENDERITEM = ({item}) => { return ( <MainItem item={item} /> ); };
 
   return (
     <>

@@ -14,14 +14,14 @@ const MainItemHeader = (props) => {
     <View style={mainStyles().MainItemHeaderContainer}>
       <TouchableOpacity>
         <Image
-          style={mainStyles(0.87).MainItemHeaderPicture}
+          style={mainStyles(5).MainItemHeaderPicture}
           source={{ uri: 'http://localhost:8080/common/usrProfile.do?imgFileName=profile.png'}}
         />
       </TouchableOpacity>
       <View style={mainStyles().MainItemHeaderSubContainer}>
         <Text style={mainStyles().MainItemHeaderText}>{item.postTit}</Text> 
-        <Text style={commonStyles(0.03).Font_000}>기간 : {item.endDt}</Text>
-        <Text style={commonStyles(0.029).Font_000}>위치 : 부천종합운동장</Text> 
+        <Text style={commonStyles(1.5).Font_000}>기간 : {item.endDt}</Text>
+        <Text style={commonStyles(1.5).Font_000}>위치 : 부천종합운동장</Text> 
       </View>
     </View>    
   );  

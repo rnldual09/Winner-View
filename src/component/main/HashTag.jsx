@@ -29,7 +29,7 @@ const HashTag = (props) => {
               key={index}
               style={{marginRight:5}}
             >
-              <Text style={commonStyles(0.031).Font_1a8cff}>#{item}</Text>
+              <Text style={commonStyles(1.5).Font_1a8cff}>#{item}</Text>
             </TouchableOpacity>            
           ))}   
         </View> 

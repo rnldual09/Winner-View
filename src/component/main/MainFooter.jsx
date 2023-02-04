@@ -26,7 +26,7 @@ const MainFooter = (props) => {
           source={require('../../assets/icon/newRegist.png')}
           style={mainStyles().MainFooterImage}
         />
-        <Text style={commonStyles(0.03).Font_000}>신청하기</Text>
+        <Text style={commonStyles(1.5).Font_000}>신청하기</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={mainStyles().MainFooterButton}
@@ -35,7 +35,7 @@ const MainFooter = (props) => {
           source={require('../../assets/icon/message.png')}
           style={mainStyles().MainFooterImage}
         />
-        <Text style={commonStyles(0.03).Font_000}>댓글달기</Text>
+        <Text style={commonStyles(1.5).Font_000}>댓글달기</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={mainStyles().MainFooterButton}
@@ -45,7 +45,7 @@ const MainFooter = (props) => {
           source={require('../../assets/icon/white_heart.png')}
           style={mainStyles().MainFooterImage}
         />
-        <Text style={commonStyles(0.03).Font_000}>좋아요</Text>
+        <Text style={commonStyles(1.5).Font_000}>좋아요</Text>
       </TouchableOpacity>
     </View>    
   );  

@@ -11,11 +11,11 @@ const MainItemContent = (props) => {
   return (    
     <View style={mainStyles().MainItemContentContainer}>
       {(item.postCont).length <= 60 ? (
-        <Text style={commonStyles(0.031).Font_000}>
+        <Text style={commonStyles(1.5).Font_000}>
           {item.postCont}
         </Text>
       ):(
-        <Text style={commonStyles(0.031).Font_000}>          
+        <Text style={commonStyles(1.5).Font_000}>          
           {more ? (
             <>{item.postCont}</>
           ) : (

@@ -11,7 +11,7 @@ const CommonBtn = (props) => {
       onPress={OnPress}
       style={commonStyles().commonBtn}
     >
-      <Text style={commonStyles(0.04).Font_fff}>{title}</Text>
+      <Text style={commonStyles(2).Font_fff}>{title}</Text>
     </TouchableOpacity>
   );  
 }

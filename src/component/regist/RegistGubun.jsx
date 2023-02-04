@@ -1,43 +1,38 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, SafeAreaView, TextInput, TouchableOpacity, ScrollView, Image } from 'react-native';
 import commonStyles from '../../style/commonStyles';
-
+import registStyles from '../../style/registStyles';
 
 const RegistGubun = (props) => {
+  
+  const { open, priv, setOpen, setPriv } = props;
+
+  // 공개 클릭
+  const checkOpen = () => {
+    setOpen(true);
+    setPriv(false);
+  };
+
+  // 비공개 클릭
+  const checkPrivate = () => {
+    setOpen(false);
+    setPriv(true);
+  };
 
   return (
   
-    <View
-      style={{
-        marginBottom:8,
-        flexDirection:'row',
-        justifyContent:'space-between'
-      }}
-    >
+    <View style={registStyles().registGubunContainer}>
       <TouchableOpacity
-        style={{
-          backgroundColor:'#1a8cff',
-          width:'49%',
-          height:35,
-          alignItems:'center',
-          justifyContent:'center',
-          borderRadius:5,
-        }}
+        style={open ? registStyles().registGubunCheck : registStyles().registGubunUnCheck}
+        onPress={() => checkOpen()}
       >
-        <Text style={commonStyles(0.031).Font_fff}>공개</Text>
+        <Text style={open ? commonStyles(1.5).Font_fff : commonStyles(1.5).Font_1a8cff}>공개</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={{
-          borderColor:'#1a8cff',
-          borderWidth:1,
-          width:'49%',
-          height:35,
-          alignItems:'center',
-          justifyContent:'center',
-          borderRadius:5,
-        }}
+        style={priv ? registStyles().registGubunCheck : registStyles().registGubunUnCheck}
+        onPress={() => checkPrivate()}
       >
-        <Text style={commonStyles(0.031).Font_1a8cff}>비공개</Text>
+        <Text style={priv ? commonStyles(1.5).Font_fff : commonStyles(1.5).Font_1a8cff}>비공개</Text>
       </TouchableOpacity>
     </View>
   );  

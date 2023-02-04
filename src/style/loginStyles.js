@@ -37,6 +37,22 @@ const signUpStyles = () => StyleSheet.create({
   loginBtnSubContainer:{
     width:'33%',
     alignItems:'center'
+  },
+  checkText:{
+    color:'#1a8cff',
+    fontSize:RFPercentage(1.5),
+    fontWeight:'200'
+  },
+  unCheckText:{
+    fontSize:RFPercentage(1.5),
+    fontWeight:'200'
+  },
+  checkBox:{
+    backgroundColor: "#fff",
+    borderColor: "#fff",
+    padding: 0,
+    margin: 0,
+    marginLeft: 0,
   }
 });
 

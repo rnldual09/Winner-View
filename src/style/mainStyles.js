@@ -1,4 +1,5 @@
 import { Dimensions, StyleSheet } from "react-native";
+import { RFPercentage } from "react-native-responsive-fontsize";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -27,13 +28,13 @@ const mainStyles = (param) => StyleSheet.create({
   },
   MainItemHeaderPicture:{
     resizeMode:'cover',
-    width:windowWidth * 0.12,
-    height:windowWidth * 0.12,
+    width:RFPercentage(param),
+    height:RFPercentage(param),
     borderRadius:50,
   },
   MainItemHeaderText:{
     color:'#000',
-    fontSize:windowWidth * 0.033,
+    height:RFPercentage(2),
     fontWeight:'bold',
     marginBottom:2,
   },
@@ -69,8 +70,8 @@ const mainStyles = (param) => StyleSheet.create({
   },
   MainFooterImage:{
     resizeMode:'cover',
-    width:windowWidth * 0.048,
-    height:windowWidth * 0.048,
+    width:RFPercentage(2.3),
+    height:RFPercentage(2.3),
     marginRight:windowWidth * 0.015,
   }
 });
