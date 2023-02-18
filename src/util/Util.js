@@ -39,7 +39,7 @@ const fetchWithToken = async ( url, data, token ) => {
 // 유저 정보 가져오기
 const getUsrInfo = async () => {
   const usrInfo = await AsyncStorage.getItem('usrInfo');
-  return usrInfo;
+  return JSON.parse(usrInfo);
 };
 
 // 유저 토큰 가져오기
