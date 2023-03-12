@@ -3,23 +3,17 @@ import { Image, View, Text, TouchableOpacity } from 'react-native';
 import mainStyles from '../../style/mainStyles';
 import commonStyles from '../../style/commonStyles';
 import Util from '../../util/Util';
+import { useNavigation } from "@react-navigation/native";
 
 const MainFooter = (props) => {
+
+  const navigation = useNavigation();
   
   const {item} = props;
 
-  const fetchNotToken = async (  ) => {
-  
-    const url = '/post/postList.do';
-    const data = {};
-
-    const responseText = await Util.fetchWithNotToken(url, data);    
-    console.log(responseText);
-  };
-
   return (    
     <View style={mainStyles().MainFooterContainer}>
-      <TouchableOpacity
+      <TouchableOpacity onPress={() => navigation.navigate('신청서작성', {'postSeq':item.postSeq})}
         style={mainStyles().MainFooterButton}
       >
         <Image 

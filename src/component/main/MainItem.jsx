@@ -18,7 +18,7 @@ const MainItem = (props) => {
        <MainPicture imglist={item.imglist} />
        <MainItemContent item={item}/>
        <HashTag item={item} />
-       <MainFooter />
+       <MainFooter item={item}/>
       </View>
     </View>    
   );  

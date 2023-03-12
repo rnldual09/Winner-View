@@ -5,6 +5,7 @@ import { tabBarScreenOptions } from "./screenOptions";
 
 import Main from '../page/Main';
 import Regist from '../page/Regist';
+import Apply from '../page/Apply';
 import Login from '../page/Login';
 import SignUp1 from '../page/SignUp1';
 import SignUp2 from '../page/SignUp2';
@@ -81,7 +82,12 @@ const Router = () => {
         name="비밀번호찾기3"
         component={FindPW3}
         options={{headerShown:true}}
-      />    
+      />
+      <RootStack.Screen 
+        name="신청서작성"
+        component={Apply}
+        options={{headerShown:true}}
+      />
     </RootStack.Navigator>
   );  
 }
