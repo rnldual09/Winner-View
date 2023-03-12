@@ -1,11 +1,29 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { Image, View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import mainStyles from '../../style/mainStyles';
 import commonStyles from '../../style/commonStyles';
+import { SliderBox } from 'react-native-image-slider-box';
+import { useFocusEffect } from "@react-navigation/native";
 
 const MainPicture = (props) => {
   
   const { imglist } = props;
+
+  useFocusEffect(  
+    useCallback(() => {
+      
+      setImgList();
+
+    }, []),
+  );
+
+  [{"imgSeq": 1, "oriFile": "buni1.jpeg", "postSeq": 1, "svrFile": "buni1.jpeg"}, {"imgSeq": 2, "oriFile": "buni4.jpeg", "postSeq": 1, "svrFile": "buni4.jpeg"}]
+
+  const setImgList = () => {
+    console.log
+  };
+
+  console.log(imglist);
 
   return (    
     <>
@@ -20,10 +38,14 @@ const MainPicture = (props) => {
               source={{ uri: 'http://localhost:8080/post/postImageView.do?imgFileName=' + item.svrFile}}
             />
           ))}
-        </View> 
+        </View>
       )}    
     </>
   );  
 }
 
 export default MainPicture;
+
+/*
+ 
+*/

@@ -44,12 +44,12 @@ const Login = () => {
         setErrState(true);
       }
       if(responseText.status == 'changePw') {       // 비밀번호 변경일 3개월 지난 유저
-        
+        console.log('dd');
         // 모달창 띄우기
 
       }
       if(responseText.status == 'lockUser') {       // 로그인 락 걸린 유저
-        
+        console.log('dddd');
         // 모달창 띄우기
 
       }     

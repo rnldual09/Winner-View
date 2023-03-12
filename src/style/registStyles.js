@@ -7,8 +7,18 @@ const windowHeight = Dimensions.get("window").height;
 const registStyles = () => StyleSheet.create({
 
   registContainer:{
-    flexDirection:'row',
-    marginBottom: windowHeight * 0.015,
+    flex:1,
+    backgroundColor:'#fff',
+    alignItems:'center',
+  },
+  registSubContainer:{
+    width:'90%',          
+    marginTop:10
+  },
+  explainText:{
+    color:'#1a8cff',
+    fontWeight:'400',
+    fontSize:RFPercentage(1.9),    
   },
   registBtnContainer:{
     justifyContent:'center',            
@@ -38,7 +48,6 @@ const registStyles = () => StyleSheet.create({
     borderRadius:10,
   },
   registGubunContainer:{
-    marginBottom: windowHeight * 0.015,
     flexDirection:'row',
     justifyContent:'space-between'
   },
@@ -59,7 +68,10 @@ const registStyles = () => StyleSheet.create({
     justifyContent:'center',
     borderRadius:5,
   },
-
+  registComponentMargin:{
+    marginTop:windowHeight * 0.01,
+    marginBottom:windowHeight * 0.02
+  }
 });
 
 export default registStyles;

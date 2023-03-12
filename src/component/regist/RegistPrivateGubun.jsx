@@ -3,7 +3,7 @@ import { View, Text, FlatList, SafeAreaView, TextInput, TouchableOpacity, Scroll
 import commonStyles from '../../style/commonStyles';
 import registStyles from '../../style/registStyles';
 
-const RegistGubun = (props) => {
+const RegistPrivateGubun = (props) => {
   
   const { open, priv, setOpen, setPriv } = props;
 
@@ -38,4 +38,4 @@ const RegistGubun = (props) => {
   );  
 }
 
-export default RegistGubun;
+export default RegistPrivateGubun;

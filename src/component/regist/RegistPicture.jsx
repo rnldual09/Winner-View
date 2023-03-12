@@ -10,7 +10,7 @@ const RegistPicture = () => {
   };
 
   return (
-    <View style={registStyles().registContainer}>          
+    <View style={{flexDirection:'row'}}>          
       <View style={registStyles().registBtnContainer}>
         <TouchableOpacity
           style={registStyles().registBtn}
