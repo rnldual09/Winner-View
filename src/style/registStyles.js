@@ -4,22 +4,86 @@ import { RFPercentage } from "react-native-responsive-fontsize";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const registStyles = () => StyleSheet.create({
+const registStyles = (param) => StyleSheet.create({
 
   registContainer:{
     flex:1,
     backgroundColor:'#fff',
     alignItems:'center',
   },
-  registSubContainer:{
-    width:'90%',          
-    marginTop:10
+  RegistStepImgContainer:{
+    justifyContent:'center',
+    alignContent:'center',
+    flexDirection:'row',   
+    marginVertical:windowHeight * 0.025
+  },
+  RegistStepImg:{
+    width:10,
+    height:10,
+    marginHorizontal:5
+  },
+  rowContainer:{
+    flexDirection:'row',
+    alignItems:'center',
+    width:'100%',
+    justifyContent:'space-between',
+    borderBottomColor:'#000',
+    borderBottomWidth:1,
+    paddingVertical:windowHeight * param
   },
   explainText:{
-    color:'#1a8cff',
+    color:param ? '#000' : '#999',
     fontWeight:'400',
-    fontSize:RFPercentage(1.9),    
+    fontSize:RFPercentage(1.8),
+    paddingLeft:windowWidth * 0.01
   },
+  marginTops:{
+    marginTop:param * windowHeight
+  },
+  regContentContainer:{    
+    width:'100%',
+    borderBottomColor:'#000',
+    borderBottomWidth:1,    
+  },
+  regContentInp1:{
+    textAlignVertical:'top',
+    fontWeight:'400',
+    fontSize:RFPercentage(1.8),
+  },
+  regContentInp2:{
+    height:200,
+    textAlignVertical:'top',
+    fontWeight:'400',
+    fontSize:RFPercentage(1.8),
+  },
+  nextBtn:{
+    width:'100%',
+    height:windowHeight * 0.071,
+    backgroundColor:'#000',
+    alignItems:'center',
+    justifyContent:'center'
+  },  
+  nextRegistContainer:{
+    width:'100%',
+    height:'40%',
+    justifyContent:'flex-end'
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   registBtnContainer:{
     justifyContent:'center',            
     alignItems:'center',
@@ -49,7 +113,8 @@ const registStyles = () => StyleSheet.create({
   },
   registGubunContainer:{
     flexDirection:'row',
-    justifyContent:'space-between'
+    justifyContent:'space-between',
+    marginBottom:windowHeight * 0.01
   },
   registGubunCheck:{
     backgroundColor:'#1a8cff',
@@ -68,10 +133,17 @@ const registStyles = () => StyleSheet.create({
     justifyContent:'center',
     borderRadius:5,
   },
-  registComponentMargin:{
-    marginTop:windowHeight * 0.01,
-    marginBottom:windowHeight * 0.02
-  }
+  dateImg:{
+    width:RFPercentage(1.9),
+    height:RFPercentage(1.9),
+    resizeMode:'contain',
+  },
+  rightImg:{
+    width:RFPercentage(1.9),
+    height:RFPercentage(1.9),
+    resizeMode:'contain',
+  },
+  
 });
 
 export default registStyles;

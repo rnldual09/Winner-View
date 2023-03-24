@@ -1,38 +1,47 @@
-import React from 'react';
-import { View, Text, FlatList, SafeAreaView, TextInput, TouchableOpacity, ScrollView, Image } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { View, TextInput, TouchableOpacity, Image } from 'react-native';
+import registStyles from '../../style/registStyles';
 
 const RegistContent = (props) => {
 
-  const { type, placeholder } = props;
+  const { type, placeholder, getter, setter } = props;
 
-  // type 별 multiline 지원여부 결정
-  const returnMultiLine = () => {    
-    const flag = type == 'wonLine' ? false : true;
-    return flag;
-  };
-  
-  // type 별 maxlength 값 return
-  const returnMaxLength = () => {
-    const length = type == 'wonLine' ? 15 : 1000;
-    return length;
-  };
+  const [maxLen, setMaxLen] = useState(0); 
+  const [styles, setStyles] = useState({});  
 
-  // type 별 style 값 return
-  const returnStyles = () => {
-    const styles = type == 'wonLine' ? {borderBottomColor:'#1a8cff', borderBottomWidth:1, fontSize:13} : {borderBottomColor:'#1a8cff', borderBottomWidth:1, fontSize:13, maxHeight:70};
-    return styles;
+  const compoRef = useRef();  // textInput focus용도
+
+  // 마운트 시 타입별로 세팅
+  useEffect(() => { settingType(); }, []);
+
+  const settingType = () => {
+
+    if(type == 'postTit') {
+      setMaxLen(20);
+      setStyles(registStyles().regContentInp1);
+    } 
+    if(type == 'postCont') { 
+      setMaxLen(1000);
+      setStyles(registStyles().regContentInp2);
+    }
   };
 
   return (
-    <>      
+    <TouchableOpacity
+      style={registStyles().regContentContainer}
+      onPress={() => compoRef.current.focus()}
+    >
       <TextInput 
         placeholder={placeholder}
-        placeholderTextColor="#999"
-        style={returnStyles()}
-        maxLength={returnMaxLength()}
-        multiline={returnMultiLine()}
-      />
-    </>
+        placeholderTextColor='#999'
+        style={styles}
+        ref={compoRef}
+        maxLength={maxLen}
+        multiline={true}
+        value={getter}
+        onChangeText={(text) => setter(text)}
+      />        
+    </TouchableOpacity>
   );  
 }
 

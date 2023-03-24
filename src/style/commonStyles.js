@@ -30,7 +30,7 @@ const commonStyles = (param) => StyleSheet.create({
   Font_000:{
     color:'#000',
     fontSize:RFPercentage(param),
-    fontWeight:'500'
+    fontWeight:'500',
   },
   Font_999:{
     color:'#999',
@@ -44,6 +44,11 @@ const commonStyles = (param) => StyleSheet.create({
   },
   Font_1a8cff:{
     color:'#1a8cff',
+    fontSize:RFPercentage(param),
+    fontWeight:'500'
+  },
+  Font_red:{
+    color:'red',
     fontSize:RFPercentage(param),
     fontWeight:'500'
   },
