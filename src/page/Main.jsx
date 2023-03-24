@@ -15,7 +15,7 @@ const Main = () => {
       getMainList();
 
     }, []),
-  );
+  ); 
 
   const getMainList = async () => {
 
