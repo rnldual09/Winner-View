@@ -4,10 +4,10 @@ import Util, { phonePattern, birthDtPattern } from '../../util/Util';
 
 const ApplyContent = (props) => {
 
-  const { size, placeholder } = props;
+  const { person, team, teamMinCnt, teamMaxCnt } = props;
 
   useEffect(() => {
-    setUsrInfo();
+    setInit();
   }, [])
 
   const [usrNm, setUsrNm] = useState('');
@@ -15,7 +15,7 @@ const ApplyContent = (props) => {
   const [usrSex, setUsrSex] = useState('');
   const [usrPh, setUsrPh] = useState('');
 
-  const setUsrInfo = async () => {
+  const setInit = async () => {
     const usrInfo = await Util.getUsrInfo();
     
     setUsrNm(usrInfo.usrNm);

@@ -28,7 +28,14 @@ const registStyles = () => StyleSheet.create({
     justifyContent:'center',
     borderRadius:5,
   },
-
+  applyGubunDisabled:{
+    backgroundColor:'#D5D5D5',
+    width:'49%',
+    height:windowHeight * 0.04,
+    alignItems:'center',
+    justifyContent:'center',
+    borderRadius:5,
+  },
 });
 
 export default registStyles;
