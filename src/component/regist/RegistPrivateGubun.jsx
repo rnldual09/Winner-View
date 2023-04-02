@@ -6,7 +6,7 @@ import registStyles from '../../style/registStyles';
 const RegistPrivateGubun = (props) => {
   
   const { open, priv, setOpen, setPriv } = props;
-
+  
   // 공개 클릭
   const checkOpen = () => {
     setOpen(true);
@@ -26,13 +26,13 @@ const RegistPrivateGubun = (props) => {
         style={open ? registStyles().registGubunCheck : registStyles().registGubunUnCheck}
         onPress={() => checkOpen()}
       >
-        <Text style={open ? commonStyles(1.5).Font_fff : commonStyles(1.5).Font_1a8cff}>공개</Text>
+        <Text style={open ? commonStyles(1.5).Font_fff : commonStyles(1.5).Font_000}>공개</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={priv ? registStyles().registGubunCheck : registStyles().registGubunUnCheck}
         onPress={() => checkPrivate()}
       >
-        <Text style={priv ? commonStyles(1.5).Font_fff : commonStyles(1.5).Font_1a8cff}>비공개</Text>
+        <Text style={priv ? commonStyles(1.5).Font_fff : commonStyles(1.5).Font_000}>비공개</Text>
       </TouchableOpacity>
     </View>
   );  

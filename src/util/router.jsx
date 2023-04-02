@@ -4,7 +4,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { tabBarScreenOptions } from "./screenOptions";
 
 import Main from '../page/Main';
-import Regist from '../page/Regist';
+import Regist1 from '../page/Regist1';
+import Regist2 from '../page/Regist2';
+import Regist3 from '../page/Regist3';
+import Regist4 from '../page/Regist4';
 import Apply from '../page/Apply';
 import Login from '../page/Login';
 import SignUp1 from '../page/SignUp1';
@@ -35,7 +38,22 @@ const Router = () => {
       />
       <RootStack.Screen 
         name="게시글작성1"
-        component={Regist}
+        component={Regist1}
+        options={{headerShown:true}}
+      />
+      <RootStack.Screen 
+        name="게시글작성2"
+        component={Regist2}
+        options={{headerShown:true}}
+      />
+      <RootStack.Screen 
+        name="게시글작성3"
+        component={Regist3}
+        options={{headerShown:true}}
+      />
+      <RootStack.Screen 
+        name="게시글작성4"
+        component={Regist4}
         options={{headerShown:true}}
       />
       <RootStack.Screen 

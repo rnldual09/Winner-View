@@ -30,8 +30,6 @@ const ScrollItem = (props) => {
     
     const standY = event.nativeEvent.contentOffset.y;
 
-    console.log(standY);
-
     // 오전오후 스크롤처리
     if(type == 'amPm') {
 

@@ -10,6 +10,7 @@ const registStyles = (param) => StyleSheet.create({
     flex:1,
     backgroundColor:'#fff',
     alignItems:'center',
+    justifyContent:'space-between'
   },
   RegistStepImgContainer:{
     justifyContent:'center',
@@ -25,11 +26,11 @@ const registStyles = (param) => StyleSheet.create({
   rowContainer:{
     flexDirection:'row',
     alignItems:'center',
-    width:'100%',
     justifyContent:'space-between',
     borderBottomColor:'#000',
     borderBottomWidth:1,
-    paddingVertical:windowHeight * param
+    height:windowHeight * 0.053,
+    width:'100%'
   },
   explainText:{
     color:param ? '#000' : '#999',
@@ -46,44 +47,46 @@ const registStyles = (param) => StyleSheet.create({
     borderBottomWidth:1,    
   },
   regContentInp1:{
-    textAlignVertical:'top',
+    textAlignVertical:'center',
     fontWeight:'400',
     fontSize:RFPercentage(1.8),
+    height:windowHeight * 0.053,
   },
   regContentInp2:{
-    height:200,
+    height:windowHeight * 0.15,
     textAlignVertical:'top',
     fontWeight:'400',
-    fontSize:RFPercentage(1.8),
+    fontSize:RFPercentage(1.8),    
   },
   nextBtn:{
     width:'100%',
-    height:windowHeight * 0.071,
+    height:windowHeight * 0.063,
     backgroundColor:'#000',
     alignItems:'center',
     justifyContent:'center'
   },  
   nextRegistContainer:{
     width:'100%',
-    height:'40%',
-    justifyContent:'flex-end'
+    height:'10%',
+    justifyContent:'flex-end',
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
+  registGubunCheck:{
+    backgroundColor:'#000',
+    width:'49%',
+    height:windowHeight * 0.04,
+    alignItems:'center',
+    justifyContent:'center',
+    borderRadius:5,
+  },
+  registGubunUnCheck:{
+    borderColor:'#000',
+    borderWidth:1,
+    width:'49%',
+    height:windowHeight * 0.04,
+    alignItems:'center',
+    justifyContent:'center',
+    borderRadius:5,
+  },
   registBtnContainer:{
     justifyContent:'center',            
     alignItems:'center',
@@ -111,27 +114,23 @@ const registStyles = (param) => StyleSheet.create({
     marginRight:windowWidth * 0.02,
     borderRadius:10,
   },
+  addedImg1:{
+    width:RFPercentage(44),
+    height:RFPercentage(44),
+    resizeMode:'contain',
+    borderRadius:10,
+  },
+  addedImg2:{
+    width:RFPercentage(8),
+    height:RFPercentage(8),
+    resizeMode:'contain',
+    marginRight:windowWidth * 0.02,
+    borderRadius:10,
+  },
   registGubunContainer:{
     flexDirection:'row',
     justifyContent:'space-between',
-    marginBottom:windowHeight * 0.01
-  },
-  registGubunCheck:{
-    backgroundColor:'#1a8cff',
-    width:'49%',
-    height:windowHeight * 0.04,
-    alignItems:'center',
-    justifyContent:'center',
-    borderRadius:5,
-  },
-  registGubunUnCheck:{
-    borderColor:'#1a8cff',
-    borderWidth:1,
-    width:'49%',
-    height:windowHeight * 0.04,
-    alignItems:'center',
-    justifyContent:'center',
-    borderRadius:5,
+    marginBottom:windowHeight * 0.015
   },
   dateImg:{
     width:RFPercentage(1.9),
@@ -143,7 +142,76 @@ const registStyles = (param) => StyleSheet.create({
     height:RFPercentage(1.9),
     resizeMode:'contain',
   },
-  
+  imgContainer:{
+    marginTop:windowHeight * 0.015,
+    alignItems:'center',
+    justifyContent:'center',
+  },
+  regHashTagContainer:{
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'space-between',        
+  },
+  hashInformation:{
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'flex-start'    
+  },
+  hashTagInp:{
+    borderBottomWidth:1,
+    borderBottomColor:'#000',
+    width:'70%',    
+    height:windowHeight * 0.053,
+    textAlignVertical:'center',
+    fontWeight:'400',
+    fontSize:RFPercentage(1.8),    
+  },
+  addBtn:{
+    backgroundColor:'#000',
+    width:'27%',
+    height:windowHeight * 0.045,
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'center',
+    borderRadius:5
+  },
+  hashTextContainer:{
+    height:windowHeight * 0.13,
+    marginTop:windowHeight * 0.007,    
+  },
+  TeamUnCheck:{
+    borderColor:'#000',
+    borderWidth:1,
+    width:'32.5%',
+    height:windowHeight * 0.04,
+    alignItems:'center',
+    justifyContent:'center',
+    borderRadius:3,
+  },
+  TeamCheck:{
+    backgroundColor:'#000',
+    width:'32.5%',
+    height:windowHeight * 0.04,
+    alignItems:'center',
+    justifyContent:'center',
+    borderRadius:5,
+  },
+  teamMinMaxCntContainer:{
+    width:'100%',
+    flexDirection:'row',
+    alignItems:'center',
+    borderBottomColor:'#000',
+    borderBottomWidth:1,
+    justifyContent:'space-between'
+  },
+  minMaxInp:{
+    
+    width:100,
+    height:windowHeight * 0.047,
+    color:'#000',
+    fontSize:RFPercentage(1.9),
+    textAlign:'center',
+  }
 });
 
 export default registStyles;

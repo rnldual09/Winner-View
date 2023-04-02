@@ -3,13 +3,14 @@ import { Text, TouchableOpacity } from 'react-native';
 import registStyles from '../../style/registStyles';
 import commonStyles from '../../style/commonStyles'; 
 
+
 const NextRegist = (props) => {
 
-  const { nowStep } = props;
-
+  const { nowStep, goNextRegist } = props;
+  
   return (
     <TouchableOpacity
-      onPress={() => console.log('dd')}
+      onPress={() => goNextRegist()}
       style={registStyles().nextBtn}
     >  
       <Text style={commonStyles(2.2).Font_fff}>

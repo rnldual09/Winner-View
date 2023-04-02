@@ -3,13 +3,12 @@ import { Text, TouchableOpacity, Image } from 'react-native';
 import registStyles from '../../style/registStyles';
 import DateModal from '../../modal/dateModal/DateModal';
  
-const SelectDate = () => {
+const SelectDate = (props) => {
 
-  const [visible, setVisible] = useState(false);                  // 달력모달 활성화
-  const [year, setYear] = useState((new Date).getFullYear());     // 년
-  const [month, setMonth] = useState((new Date).getMonth() + 1);  // 월
-  const [day, setDay] = useState((new Date).getDate() + 1);       // 일
-  const [success, setSuccess] = useState(false);                  // 날짜입력여부
+  const { year, setYear, month, setMonth, day, setDay } = props;
+
+  const [visible, setVisible] = useState(false);  // 모달활성화
+  const [success, setSuccess] = useState(false);  // 입력여부
 
   // ex) 3월 03월로 수정
   const addZero = (param) => { return param < 10 ? '0' + param : param;}

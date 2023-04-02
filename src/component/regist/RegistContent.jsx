@@ -15,14 +15,13 @@ const RegistContent = (props) => {
   useEffect(() => { settingType(); }, []);
 
   const settingType = () => {
-
-    if(type == 'postTit') {
-      setMaxLen(20);
-      setStyles(registStyles().regContentInp1);
-    } 
+ 
     if(type == 'postCont') { 
       setMaxLen(1000);
       setStyles(registStyles().regContentInp2);
+    } else {
+      setMaxLen(20);
+      setStyles(registStyles().regContentInp1);
     }
   };
 

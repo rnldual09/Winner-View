@@ -3,13 +3,12 @@ import { Text, TouchableOpacity, Image } from 'react-native';
 import registStyles from '../../style/registStyles';
 import TimeModal from '../../modal/timeModal/TimeModal';
  
-const SelectTime = () => {
-
-  const [visible, setVisible] = useState(false);  // 시간모달 활성화
-  const [amPm, setAmPm] = useState('AM');         // 오전 오후
-  const [hour, setHour] = useState(1);         // 시간
-  const [minute, setMinute] = useState(0);     // 분
-  const [success, setSuccess] = useState(false);  // 날짜입력여부
+const SelectTime = (props) => {
+  
+  const { amPm, setAmPm, hour, setHour, minute, setMinute } = props;
+  
+  const [visible, setVisible] = useState(false);  // 모달활성화
+  const [success, setSuccess] = useState(false);  // 입력여부
 
   const plusZero = (param) => {
     return param < 10 ? '0' + param : param;

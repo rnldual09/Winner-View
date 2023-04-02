@@ -8,7 +8,7 @@ const commonStyles = (param) => StyleSheet.create({
   
   onlyMargin:{
     margin:param * windowWidth
-  },
+  },  
   CommonImage:{
     resizeMode:'cover',
     width:RFPercentage(param),
@@ -68,6 +68,11 @@ const commonStyles = (param) => StyleSheet.create({
     color:'red',
     fontSize:RFPercentage(1.5),    
   },
+  flexRow:{
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'center'    
+  },  
 
 });
 
