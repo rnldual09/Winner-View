@@ -32,6 +32,11 @@ const MainHeader = () => {
             style={commonStyles(2.5).CommonImage}
           />
         </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => console.log('hi')}
+        >
+          <Text>마이페이지</Text>
+        </TouchableOpacity>        
       </View>
     </View>
   );  

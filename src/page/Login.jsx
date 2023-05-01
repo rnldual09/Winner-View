@@ -8,7 +8,6 @@ import LoginTextInput from '../component/login/LoginTextInput';
 import CommonErrMsg from '../component/common/CommonErrMsg';
 import Util from '../util/Util';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import ButtonModal from '../component/modal/ButtonModal';
 import CheckBoxs from '../component/login/CheckBoxs';
 
 const Login = () => {
@@ -142,10 +141,3 @@ const Login = () => {
 }
 
 export default Login;
-
-/*
-<ButtonModal
-        visible={openModal}
-        onRequestClose={setOpenModal}
-      />
-*/

@@ -15,9 +15,6 @@ const modalStyles = (param) => StyleSheet.create({
   modalSubContainer:{
     backgroundColor:'#fff',
     width:'85%',
-    height:'45%',
-    borderColor:'#999',
-    borderWidth:1,
     borderRadius:20,
     alignItems:'center',
   },
@@ -30,6 +27,86 @@ const modalStyles = (param) => StyleSheet.create({
     alignItems:'flex-end',
     marginTop:windowHeight * 0.025,    
   },
+  modalHeaderContainer:{
+    marginVertical:windowHeight * 0.01,
+  },
+  modalFooterContainer:{
+    marginTop:windowHeight * 0.02,
+    marginBottom:windowHeight * 0.025
+  },
+  areaContentContainer:{
+    width:'90%',
+    flexDirection:'row',
+    flexWrap:'wrap',
+    justifyContent:'flex-start',
+    alignSelf:'center',
+    
+  },
+  areaContent:{
+    borderColor:'#999',
+    borderWidth:1,
+    width:windowWidth * 0.165,
+    height:windowHeight * 0.045,
+    marginHorizontal:'1.5%',
+    marginVertical:windowHeight * 0.005,
+    alignItems:'center',
+    justifyContent:'center',
+    borderRadius:5
+  },
+  areaContentPicked:{
+    backgroundColor:'#000',
+    width:windowWidth * 0.165,
+    height:windowHeight * 0.045,
+    marginHorizontal:'1.5%',
+    marginVertical:windowHeight * 0.005,
+    alignItems:'center',
+    justifyContent:'center',
+    borderRadius:5
+  },
+  nextBtn1:{
+    borderColor:'#000',
+    borderWidth:1,
+    width:windowWidth * 0.19,
+    height:windowHeight * 0.043,
+    marginHorizontal:windowWidth * 0.01,
+    alignItems:'center',
+    justifyContent:'center',
+    borderRadius:5
+  },
+  nextBtn2:{
+    backgroundColor:'#000',
+    width:windowWidth * 0.19,
+    height:windowHeight * 0.043,
+    marginHorizontal:windowWidth * 0.01,
+    alignItems:'center',
+    justifyContent:'center',
+    borderRadius:5
+  },
+  footerContainer:{
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'center'
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   dateHeaderContainer:{
     flexDirection:'row',
     alignItems:'center',
