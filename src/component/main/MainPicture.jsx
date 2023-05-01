@@ -2,8 +2,8 @@ import React, { useEffect, useCallback } from 'react';
 import { Image, View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import mainStyles from '../../style/mainStyles';
 import commonStyles from '../../style/commonStyles';
-import { SliderBox } from 'react-native-image-slider-box';
 import { useFocusEffect } from "@react-navigation/native";
+import Swiper from 'react-native-swiper';
 
 const MainPicture = (props) => {
   
@@ -14,9 +14,7 @@ const MainPicture = (props) => {
       
 
     }, []),
-  );
-
-  [{"imgSeq": 1, "oriFile": "buni1.jpeg", "postSeq": 1, "svrFile": "buni1.jpeg"}, {"imgSeq": 2, "oriFile": "buni4.jpeg", "postSeq": 1, "svrFile": "buni4.jpeg"}]
+  );  
 
   return (    
     <>
@@ -24,13 +22,22 @@ const MainPicture = (props) => {
         null
       ) : (
         <View style={mainStyles().MainPictureContainer}>
-          {imglist.map((item, index) => (            
-            <Image
-              key={index}
-              style={commonStyles(42).CommonImage}
-              source={{ uri: 'http://localhost:8080/post/postImageView.do?imgFileName=' + item.svrFile}}
-            />
-          ))}
+          <Swiper
+            showsButtons={false} /** < > 버튼 */
+            index={0}
+            dotStyle={{borderColor:'red', borderWidth:1}}
+            dotColor='red'
+            activeDotColor='black'
+            activeDotStyle={{borderColor:'blue', borderWidth:1}}
+          >
+            {imglist.map((item, index) => (            
+              <Image
+                key={index}
+                style={{width:'100%', height:'100%'}}
+                source={{ uri: 'http://localhost:8080/post/postImageView.do?imgFileName=' + item.svrFile}}
+              />
+            ))}
+          </Swiper>
         </View>
       )}    
     </>

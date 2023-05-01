@@ -41,6 +41,9 @@ const mainStyles = (param) => StyleSheet.create({
   MainPictureContainer:{
     marginBottom:windowWidth * 0.03,
     alignItems:'center',
+    width:RFPercentage(42),
+    height:RFPercentage(42),
+    alignSelf:'center'
   },
   MainItemContentContainer:{
     width:'95%',
