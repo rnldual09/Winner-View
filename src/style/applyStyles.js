@@ -4,7 +4,7 @@ import { RFPercentage } from "react-native-responsive-fontsize";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const registStyles = () => StyleSheet.create({
+const applyStyles = () => StyleSheet.create({
 
   applyGubunContainer:{ 
     marginBottom: windowHeight * 0.015,
@@ -36,6 +36,36 @@ const registStyles = () => StyleSheet.create({
     justifyContent:'center',
     borderRadius:5,
   },
+  applyBtn:{
+    backgroundColor:'#1a8cff',
+    width:'98%',
+    height:windowHeight * 0.04,
+    alignItems:'center',
+    justifyContent:'center',
+    borderRadius:5,
+  },
+  memDelBtn:{
+    backgroundColor:'red',
+    width:'15%',
+    justifyContent:'center',
+    alignItems:'center',
+    borderRadius:5,
+  },
+  teamAddBtn:{
+    backgroundColor:'#1a8cff',
+    width:'35%',
+    height:windowHeight * 0.04,
+    alignItems:'center',
+    justifyContent:'center',
+    borderRadius:5,
+    marginTop:5,
+    marginBottom:8,
+  },
+  teamMember:{
+    width:'85%',
+    borderWidth:1,
+    borderColor:'#1a8cff'
+  },
 });
 
-export default registStyles;
+export default applyStyles;

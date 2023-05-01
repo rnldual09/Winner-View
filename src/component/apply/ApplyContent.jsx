@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, SafeAreaView, TextInput, TouchableOpacity, ScrollView, Image } from 'react-native';
 import Util, { phonePattern, birthDtPattern } from '../../util/Util';
+import ApplyPerContent from './ApplyPerContent';
+import ApplyTeamContent from './ApplyTeamContent';
 
 const ApplyContent = (props) => {
 
@@ -8,8 +10,14 @@ const ApplyContent = (props) => {
 
   useEffect(() => {
     setInit();
-  }, [])
+  }, []);
 
+
+  useEffect(() => {
+    contentChg();
+  }, [person,team]);
+
+  const [usrId, setUsrId] = useState('');
   const [usrNm, setUsrNm] = useState('');
   const [birthDt, setBirthDt] = useState('');
   const [usrSex, setUsrSex] = useState('');
@@ -18,26 +26,43 @@ const ApplyContent = (props) => {
   const setInit = async () => {
     const usrInfo = await Util.getUsrInfo();
     
+    setUsrId(usrInfo.usrId);
     setUsrNm(usrInfo.usrNm);
     setBirthDt(usrInfo.birthDt.replace(birthDtPattern, '$1-$2-$3'));
     setUsrSex(usrInfo.usrSex==1?'남':'여');
     setUsrPh(usrInfo.usrPh.replace(phonePattern, '$1-$2-$3'));
   };
 
+  const contentChg = () => {
+    if(person){
+      return (
+        <ApplyPerContent
+          usrId={usrId}
+          usrNm={usrNm}
+          birthDt={birthDt}
+          usrSex={usrSex}
+          usrPh={usrPh}
+        />
+      );
+    }else{
+      return (
+        <ApplyTeamContent
+          usrId={usrId}
+          usrNm={usrNm}
+          teamMinCnt={teamMinCnt}
+          teamMaxCnt={teamMaxCnt}
+        />
+      );
+    }
+  };
+
   return (
     <View
       style={{
-        marginBottom:8
+        marginBottom:8, height:'90%'
       }}
     >
-      <Text>성명</Text>
-      <Text>{usrNm}</Text>
-      <Text>생년월일</Text>
-      <Text>{birthDt}</Text>
-      <Text>성별</Text>
-      <Text>{usrSex}</Text>
-      <Text>연락처</Text>
-      <Text>{usrPh}</Text>
+    {contentChg()}
     </View>
   );  
 }

@@ -23,7 +23,6 @@ const Apply = ({ route }) => {
   const getPostInfo = async () => {
     const url = '/post/getPostInfo.do';
     const data = {'postSeq':postSeq};
-    console.log('22222');
     const postInfo = await Util.fetchWithNotToken(url, data);
     setPerYn(postInfo.perYn);
     setTeamYn(postInfo.teamYn);
