@@ -17,19 +17,19 @@ const Apply = ({ route }) => {
   const [team, setTeam] = useState(false); //팀 클릭 여부
   const [perYn, setPerYn] = useState('N');   // 개인여부
   const [teamYn, setTeamYn] = useState('N');  // 팀여부
-  const [teamMinCnt, setTeamMinCnt] = useState('');  // 팀 최소인원
-  const [teamMaxCnt, setTeamMaxCnt] = useState('');  // 팀 최대인원
+  const [teamMinCnt, setTeamMinCnt] = useState(0);  // 팀 최소인원
+  const [teamMaxCnt, setTeamMaxCnt] = useState(0);  // 팀 최대인원
 
   const getPostInfo = async () => {
     const url = '/post/getPostInfo.do';
     const data = {'postSeq':postSeq};
-    const postInfo = await Util.fetchWithNotToken(url, data);
-    setPerYn(postInfo.perYn);
-    setTeamYn(postInfo.teamYn);
-    setTeamMinCnt(postInfo.teamMinCnt);
-    setTeamMaxCnt(postInfo.teamMaxCnt);
+    const post = await Util.fetchWithNotToken(url, data);
+    setPerYn(post.postInfo.perYn);
+    setTeamYn(post.postInfo.teamYn);
+    setTeamMinCnt(post.postInfo.teamMinCnt);
+    setTeamMaxCnt(post.postInfo.teamMaxCnt);
 
-    if((postInfo.perYn == 'Y' && postInfo.teamYn == 'Y') || postInfo.teamYn == 'N'){
+    if(post.postInfo.perYn != 'N'){
       setPerson(true);
       setTeam(false);
     }else{

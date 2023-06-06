@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Alert } from "react-native";
-import { View, Text, FlatList, SafeAreaView, TextInput, TouchableOpacity, ScrollView, Image } from 'react-native';
+import { View, Text, FlatList, SafeAreaView, TextInput, TouchableOpacity, ScrollView, Image, Alert } from 'react-native';
 import commonStyles from '../../style/commonStyles';
 import applyStyles from '../../style/applyStyles';
 

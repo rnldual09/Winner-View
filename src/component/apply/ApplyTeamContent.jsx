@@ -1,24 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, SafeAreaView, TextInput, TouchableOpacity, ScrollView, Image } from 'react-native';
+import { View, Text, FlatList, SafeAreaView, TextInput, TouchableOpacity, ScrollView, Image, Alert } from 'react-native';
 import commonStyles from '../../style/commonStyles';
 import applyStyles from '../../style/applyStyles';
-import MemberBottomSheet from './MemberBottomSheet';
+import MemberModal from '../../modal/memberModal/MemberModal';
 
 const ApplyTeamContent = (props) => {
 
   const { usrId, usrNm, teamMinCnt, teamMaxCnt } = props;
 
   const [teamMembers, setTeamMembers] = useState([{memId:usrId, memNm:usrNm}]);
+  const[memberModalVisible, setMemberModalVisible] = useState(false);  // 모달활성화
+  const[possibleCnt, setPossibleCnt] = useState(teamMaxCnt-1);  // 가능한 팀맴버 수
+  const[modalMateList, setModalMateList] = useState([]);  // 모달에서 가져온 멤버들
 
   /** 팀원 추가 버튼 */
   const teamAddBtnClick = () => {
+    setPossibleCnt(teamMaxCnt - teamMembers.length); //추가할 수 있는 팀 맴버 수
+    setMemberModalVisible(true);
+    /*
     let membersArr = [...teamMembers]; //객체 복사
     membersArr.push({memId:'aaa', memNm:'금길영'});
     setTeamMembers(membersArr);
+    */
   };
   
   /** 팀원 삭제 버튼 */
-  const teamDelBtnClick = (deletedIndex) => {
+  const teamDelBtnClick = (deletedIndex, memId) => {
+    if(memId == usrId){
+      Alert.alert("자신은 삭제할 수 없습니다.");
+      return;
+    }
     let membersArr = [...teamMembers]; //객체 복사
     membersArr.splice(deletedIndex, 1);
     setTeamMembers(membersArr);
@@ -43,29 +54,38 @@ const ApplyTeamContent = (props) => {
             </View>
             <TouchableOpacity
               style={applyStyles().memDelBtn}
-              onPress={() => teamDelBtnClick(index)}
+              onPress={() => teamDelBtnClick(index,item.memId)}
             >
               <Text style={commonStyles(1.5).Font_fff}>삭제</Text>
             </TouchableOpacity>
           </View>
         ))}  
 
-        
-        <View style={{ alignItems:'center', width:'100%' }}
-        >
-          <TouchableOpacity
-            style={applyStyles().teamAddBtn}
-            onPress={() => teamAddBtnClick()}
-          >
-            <Text style={commonStyles(1.5).Font_fff}>팀원 추가</Text>
-          </TouchableOpacity>
-        </View>
+        {possibleCnt != 0 ?
+          <View style={{ alignItems:'center', width:'100%' }}>
+            <TouchableOpacity
+              style={applyStyles().teamAddBtn}
+              onPress={() => teamAddBtnClick()}
+            >
+              <Text style={commonStyles(1.5).Font_fff}>팀원 추가</Text>
+            </TouchableOpacity>
+          </View>
+          : null
+        }
       </ScrollView>
       <TouchableOpacity
         style={applyStyles().applyBtn}
         onPress={() => applyBtnClick()}
       >
-        <Text style={commonStyles(1.5).Font_fff}>신청하기</Text>
+      <MemberModal
+        visible={memberModalVisible}
+        onRequestClose={setMemberModalVisible}
+        usrId={usrId}
+        possibleCnt={possibleCnt}
+        modalMateList={modalMateList}
+        setModalMateList={setModalMateList}
+      />
+      <Text style={commonStyles(1.5).Font_fff}>신청하기</Text>
       </TouchableOpacity>
     </View>
   );  
