@@ -13,40 +13,40 @@ const AreaModal = (props) => {
 
   const[step, setStep] = useState('');                // 날짜 선택 순서
   const[headerTitle, setHeaderTitle] = useState('');  // 헤더 타이들
-  const[codVal1, setCodVal1] = useState('');          // 지역 대분류 코드
-  const[codVal2, setCodVal2] = useState('');          // 지역 소분류 코
-  const[codNm1, setCodNm1] = useState('');            // 지역 대분류 명
-  const[codNm2, setCodNm2] = useState('');            // 지역 소분류 명
-
+  const[parentCod, setParentCod] = useState('');      // 지역 대분류 코드
+  const[childCod, setChildCod] = useState('');        // 지역 소분류 코
+  const[parentCodNm, setParentCodNm] = useState('');  // 지역 대분류 명
+  const[childCodNm, setChildCodNm] = useState('');    // 지역 소분류 명
+  
   const[contentArr, setContentArr] = useState([{}]);  // 지역리스트
 
   // 모달 활성화 시 값 초기화
   useEffect(() => { 
-    if(visible) { 
+    if(visible) {       
+      setParentCod('');
+      setChildCod('');
+      setParentCodNm('');
+      setChildCodNm('');
       setStep('first');
-      setCodNm1('');
-      setCodNm2('');
-      setCodVal2('');
-      setHeaderTitle('');
     }
   }, [visible]);
 
-  useEffect(() => {
-    // step 바뀔때마다 지역리스트 가져오기
+  // step 바뀔때마다 지역리스트 가져오기
+  useEffect(() => {    
     if(step == 'first')  selectAreaList('');
-    if(step == 'second') selectAreaList(codVal1);
+    if(step == 'second') selectAreaList(parentCod);
   }, [step]);
 
-  const selectAreaList = async (val) => {
+  const selectAreaList = async (codVal1) => {
 
-    const url = '/common/getCodeList.do';
-    const data = {'codId':'AREA_CD', 'codVal1':val};
+    const url = '/common/getAreaList.do';
+    const data = {'codVal1':codVal1};
     const response = await Util.fetchWithNotToken(url, data);
 
     const tempContentArr = [];
 
     for(let i=0; i<response.length; i++) {
-      const arr = {'codCd':response[i].codCd, 'codNm':response[i].codNm};
+      const arr = {'codCd':response[i].codCd, 'codNm':response[i].codNm, 'cnt':response[i].cnt};
       tempContentArr.push(arr);
     }
 
@@ -54,8 +54,8 @@ const AreaModal = (props) => {
 
     // 대분류 지역 화면로드시 기본값 서울로 지정
     if(step == 'first') { 
-      setCodVal1(tempContentArr[0].codCd);
-      setCodNm1('서울');
+      setParentCod(tempContentArr[0].codCd);
+      setParentCodNm('서울');
     }
   };
 
@@ -64,15 +64,15 @@ const AreaModal = (props) => {
   // 지역 선택 종료시
   const areaFinish = () => {
 
-    if(codVal2 == '') {
+    if(childCodNm == '') {
       alert('지역을 선택해주세요');
       return;
     }
 
-    setArea1(codVal1);
-    setArea2(codVal2.substring(0, codVal2.length - 1));
-    setAreaNm1(codNm1);
-    setAreaNm2(codNm2.substring(0, codNm2.length - 1));
+    setArea1(parentCod);
+    setArea2(childCod.substring(0, childCod.length - 1));
+    setAreaNm1(parentCodNm);
+    setAreaNm2(childCodNm.substring(0, childCodNm.length - 1));
     onRequestClose((state) => !state);
   };
 
@@ -103,14 +103,14 @@ const AreaModal = (props) => {
               step={step}  
             />
             <AreaModalContent
-              contentArr={contentArr}              
-              codVal1={codVal1}
-              codVal2={codVal2}
-              setCodVal1={setCodVal1}
-              setCodVal2={setCodVal2}
-              codNm2={codNm2}
-              setCodNm1={setCodNm1}
-              setCodNm2={setCodNm2}              
+              contentArr={contentArr}
+              parentCod={parentCod}
+              childCod={childCod}
+              setParentCod={setParentCod}
+              setChildCod={setChildCod}
+              childCodNm={childCodNm}
+              setParentCodNm={setParentCodNm}
+              setChildCodNm={setChildCodNm}              
               step={step}
               setHeaderTitle={setHeaderTitle}              
             />

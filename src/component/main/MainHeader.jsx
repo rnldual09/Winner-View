@@ -10,7 +10,7 @@ const MainHeader = () => {
 
   return (    
     <View style={mainStyles(0.053).MainHeaderContainer}>
-      <View style={{width:'65%', alignItems:'center', justifyContent:'center'}}>
+      <View style={{alignItems:'center', justifyContent:'center'}}>
         <Text>로고들어갈곳</Text>
       </View>
       <View style={mainStyles().MainHeaderIconContainer}>
@@ -33,10 +33,23 @@ const MainHeader = () => {
           />
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => console.log('hi')}
+          style={{borderColor:'red', borderWidth:1,marginHorizontal:5}}
+          onPress={() => navigation.navigate('마이페이지')}
         >
           <Text>마이페이지</Text>
-        </TouchableOpacity>        
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{borderColor:'red', borderWidth:1,marginHorizontal:5}}
+          onPress={() => navigation.navigate('검색조건')}
+        >
+          <Text>검색필터</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{borderColor:'red', borderWidth:1,marginHorizontal:5}}
+          onPress={() => navigation.navigate('친구찾기')}
+        >
+          <Text>친구찾기</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );  

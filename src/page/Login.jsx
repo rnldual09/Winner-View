@@ -58,9 +58,28 @@ const Login = () => {
   // 기기에 유저정보 저장
   const setAsyncStorage = async (responseText) => {
     
-    await AsyncStorage.setItem('usrInfo', JSON.stringify(responseText.usrInfo));
+    const usrInfo = JSON.stringify(responseText.usrInfo);
+    
+    await AsyncStorage.setItem('usrInfo', usrInfo);
     await AsyncStorage.setItem('token', responseText.token);
     
+    const postFilter = {
+      'onlyMate':'N',
+      'postArea1':responseText.usrInfo.usrArea1,
+      'postArea2':responseText.usrInfo.usrArea2,
+      'postAreaNm1':responseText.usrInfo.usrAreaNm1,
+      'postAreaNm2':responseText.usrInfo.usrAreaNm2,
+      'perYn':'Y',
+      'teamYn':'Y',
+      'teamMinCnt':'',
+      'teamMaxCnt':'',
+      'endDt':'',
+    };
+    
+    console.log(postFilter);
+
+    await AsyncStorage.setItem('postFilter', JSON.stringify(postFilter));
+
     autoLogin ? await AsyncStorage.setItem('autoLogin', 'Y') : await AsyncStorage.setItem('autoLogin', 'N');
     saveId    ? await AsyncStorage.setItem('saveId', usrId)  : await AsyncStorage.setItem('saveId', '');
   };

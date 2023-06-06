@@ -42,17 +42,7 @@ const MainItemHeader = (props) => {
         <Text style={mainStyles().MainItemHeaderText}>{item.postTit}</Text> 
         <Text style={commonStyles(1.5).Font_000}>기간 : {item.endDt}</Text>
         <Text style={commonStyles(1.5).Font_000}>위치 : 부천종합운동장</Text> 
-      </View>
-      {item.usrId == myId ? (
-        <View>
-          <TouchableOpacity
-             style={{borderColor:'red', borderWidth:1, marginLeft:40}}
-             onPress={() => updateRegist()}
-          >
-            <Text>수정하기</Text>
-          </TouchableOpacity>
-        </View>
-      ):null}      
+      </View>          
     </View>    
   );  
 }

@@ -12,7 +12,7 @@ const mainStyles = (param) => StyleSheet.create({
     flexDirection:'row',
   },
   MainHeaderIconContainer:{
-    width:'35%',          
+    
     flexDirection:'row',
     alignItems:'center',
     justifyContent:'space-evenly',

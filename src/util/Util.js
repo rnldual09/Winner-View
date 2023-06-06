@@ -55,6 +55,12 @@ const getUsrtoekn = async () => {
   return token;
 };
 
-const Util = { fetchWithNotToken, fetchWithToken, getUsrInfo, getUsrtoekn };
+// 검색필터 가져오기
+const getPostFilter = async () => {
+  const postFilter = await AsyncStorage.getItem('postFilter');
+  return JSON.parse(postFilter);
+};
+
+const Util = { fetchWithNotToken, fetchWithToken, getUsrInfo, getUsrtoekn, getPostFilter };
 
 export default Util;

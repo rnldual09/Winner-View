@@ -29,6 +29,7 @@ const MainPicture = (props) => {
             dotColor='red'
             activeDotColor='black'
             activeDotStyle={{borderColor:'blue', borderWidth:1}}
+            loop={false}
           >
             {imglist.map((item, index) => (            
               <Image

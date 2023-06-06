@@ -20,11 +20,21 @@ const Main = () => {
   const getMainList = async () => {
 
     const usrInfo = await Util.getUsrInfo();
-    const token = await Util.getUsrtoekn();
+    const postFilter = await Util.getPostFilter();
     const url = '/post/postList.do';
-    const data = {'sessionId':usrInfo.usrId};
+    const data = {
+      'sessionId':usrInfo.usrId,
+      'onlyMate':postFilter.onlyMate,
+      'postArea1':postFilter.postArea1,
+      'postArea2':postFilter.postArea2,
+      'perYn':postFilter.perYn,
+      'teamYn':postFilter.teamYn,
+      'teamMinCnt':postFilter.teamMinCnt,
+      'teamMaxCnt':postFilter.teamMaxCnt,
+      'endDt':postFilter.endDt
+    };
 
-    const response = await Util.fetchWithToken(url, data, token);
+    const response = await Util.fetchWithNotToken(url, data);
     setBoardData(response); 
   };
   
