@@ -31,10 +31,10 @@ const Main = () => {
       'teamYn':postFilter.teamYn,
       'teamMinCnt':postFilter.teamMinCnt,
       'teamMaxCnt':postFilter.teamMaxCnt,
-      'endDt':postFilter.endDt
     };
 
     const response = await Util.fetchWithNotToken(url, data);
+    console.log(response);
     setBoardData(response); 
   };
   

@@ -42,7 +42,7 @@ const SignUp1 = () => {
     const data = {'usrId':usrId};
     const response = await Util.fetchWithNotToken(url, data);
     
-    if(response.result == 'available') {
+    if(response.result == 0) {
       setChkDupId(true);
       setMsg1('사용가능한 아이디입니다');
     } else {

@@ -15,7 +15,6 @@ const PostFilter = () => {
   const[postAreaNm1, setPostAreaNm1] = useState('');                // 대분류 선택지역명
   const[postAreaNm2, setPostAreaNm2] = useState('');                // 소분류 선택지역명
   const[areaModalVisible, setAreaModalVisible] = useState(false);   // 모달활성화
-  const[endDt, setEndDt] = useState('');                            // 마감날짜
   const[onlyMate, setOnlyMate] = useState('');                      // 친구게시글만 보기 or 전체
   const[perYn, setPerYn] = useState('');                            // 개인여부
   const[teamYn, setTeamYn] = useState('');                          // 팀여부
@@ -41,7 +40,6 @@ const PostFilter = () => {
     setTeamYn(postFilter.teamYn);
     setTeamMinCnt(postFilter.teamMinCnt);
     setTeamMaxCnt(postFilter.teamMaxCnt);
-    setEndDt(postFilter.endDt);
     setOnlyMate(postFilter.onlyMate);    
   };
 
@@ -78,7 +76,6 @@ const PostFilter = () => {
       'teamYn':teamYn,
       'teamMinCnt':teamMinCnt,
       'teamMaxCnt':teamMaxCnt,
-      'endDt':endDt,
     };
     
     await AsyncStorage.setItem('postFilter', JSON.stringify(postFilter));
@@ -98,14 +95,6 @@ const PostFilter = () => {
           >
             <Text>위치고르기</Text>
           </TouchableOpacity>
-        </View>
-        <View style={{marginVertical:10}}>
-          <Text>마감날짜</Text>
-          <Text>선택 : {endDt == '' ? '상관없음' : endDt}</Text>
-          <TouchableOpacity style={{borderColor:'red', borderWidth:1}} onPress={() => setEndDt('20230501')}><Text>마감날짜 20230501</Text></TouchableOpacity>
-          <TouchableOpacity style={{borderColor:'red', borderWidth:1}} onPress={() => setEndDt('20230601')}><Text>마감날짜 20230601</Text></TouchableOpacity>
-          <TouchableOpacity style={{borderColor:'red', borderWidth:1}} onPress={() => setEndDt('20230701')}><Text>마감날짜 20230701</Text></TouchableOpacity>
-          <TouchableOpacity style={{borderColor:'red', borderWidth:1}} onPress={() => setEndDt('')}><Text>상관없음</Text></TouchableOpacity>
         </View>
         <View style={{marginVertical:10}}>
           <Text>게시글보여지는방식</Text>

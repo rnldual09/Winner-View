@@ -19,10 +19,12 @@ import FindID2 from '../page/FindID2';
 import FindPW1 from "../page/FindPW1";
 import FindPW2 from "../page/FindPW2";
 import FindPW3 from "../page/FindPW3";
+import FindPW4 from "../page/FindPW4";
 import MyPage from '../page/Mypage';
 import MyPost from '../page/MyPost';
 import PostFilter from '../page/PostFilter';
 import FindMate from '../page/FindMate';
+import Loading from '../page/Loading';
 
 const RootStack = createStackNavigator();
 const BottomStack = createBottomTabNavigator();
@@ -30,6 +32,11 @@ const BottomStack = createBottomTabNavigator();
 const Router = () => {
   return (
     <RootStack.Navigator>
+      <RootStack.Screen 
+        name="로딩"
+        component={Loading}
+        options={{headerShown:false}}
+      />
       <RootStack.Screen 
         name="로그인"
         component={Login}
@@ -88,7 +95,7 @@ const Router = () => {
       <RootStack.Screen 
         name="아이디찾기2"
         component={FindID2}
-        options={{headerShown:true}}
+        options={{headerShown:false}}
       />
       <RootStack.Screen 
         name="비밀번호찾기1"
@@ -104,6 +111,11 @@ const Router = () => {
         name="비밀번호찾기3"
         component={FindPW3}
         options={{headerShown:true}}
+      />
+      <RootStack.Screen 
+        name="비밀번호찾기4"
+        component={FindPW4}
+        options={{headerShown:false}}
       />
       <RootStack.Screen 
         name="신청서작성"
