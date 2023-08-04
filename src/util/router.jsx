@@ -23,8 +23,9 @@ import FindPW4 from "../page/FindPW4";
 import MyPage from '../page/Mypage';
 import MyPost from '../page/MyPost';
 import PostFilter from '../page/PostFilter';
-import FindMate from '../page/FindMate';
+import Mate from '../page/Mate';
 import Loading from '../page/Loading';
+import Comment from '../page/Comment';
 
 const RootStack = createStackNavigator();
 const BottomStack = createBottomTabNavigator();
@@ -139,7 +140,12 @@ const Router = () => {
       />
       <RootStack.Screen 
         name="친구찾기"
-        component={FindMate}
+        component={Mate}
+        options={{headerShown:true}}
+      />
+      <RootStack.Screen 
+        name="댓글"
+        component={Comment}
         options={{headerShown:true}}
       />
     </RootStack.Navigator>

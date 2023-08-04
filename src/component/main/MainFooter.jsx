@@ -24,6 +24,7 @@ const MainFooter = (props) => {
       </TouchableOpacity>
       <TouchableOpacity
         style={mainStyles().MainFooterButton}
+        onPress={() => navigation.navigate('댓글', {'postSeq':item.postSeq})}
       >
         <Image 
           source={require('../../assets/icon/message.png')}
