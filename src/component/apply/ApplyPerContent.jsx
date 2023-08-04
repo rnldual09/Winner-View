@@ -7,8 +7,39 @@ const ApplyPerContent = (props) => {
 
   const { usrId, usrNm, birthDt, usrSex, usrPh } = props;
 
-  const applyBtnClick = () => {
+  const applyBtnClick = async () => {
+    /*
+    const usrInfo =  await Util.getUsrInfo();
+    const usrId = usrInfo.usrId;
+
+    const url = '/post/insPostMst.do';
+    const data = {
+      'usrId':usrId,
+      'openYn':route.params.openYn,
+      'svrFile':route.params.svrFile,
+      'oriFile':route.params.oriFile,
+      'postTit':route.params.postTit,
+      'postCont':route.params.postCont,
+      'postArea1':route.params.postArea1,
+      'postArea2':route.params.postArea2,
+      'hashTag':route.params.hashTag,
+      'endDt':route.params.endDt,
+      'perYn':route.params.perYn,
+      'teamYn':route.params.teamYn,
+      'teamMinCnt':route.params.teamMinCnt,
+      'teamMaxCnt':route.params.teamMaxCnt,
+      'grdArr':route.params.grdArr,
+    };
+
+    if(isUpdate) data.postSeq = (route.params.postMstData.postInfo.postSeq).toString();
+
+    await Util.fetchWithNotToken(url, data);
     
+    const alertTitle = isUpdate ? '게시글 수정완료' : '게시글 등록완료';
+    alert(alertTitle);
+    
+    navigation.navigate('메인');
+    */
   };
 
   return (

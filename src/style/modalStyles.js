@@ -87,7 +87,19 @@ const modalStyles = (param) => StyleSheet.create({
     alignItems:'center',
     justifyContent:'center'
   },
-
+  bringBtn:{
+    backgroundColor:'#1a8cff',
+    width:'98%',
+    height:windowHeight * 0.04,
+    alignItems:'center',
+    justifyContent:'center',
+    borderRadius:5,
+    //position : 'absolute', //버튼 위치 때문에 임시로 해놓음 수정 필요
+    //top:380, //버튼 위치 때문에 임시로 해놓음 수정 필요
+    //bottom:0, //버튼 위치 때문에 임시로 해놓음 수정 필요
+    //left:3, //버튼 위치 때문에 임시로 해놓음 수정 필요
+    //right:0 //버튼 위치 때문에 임시로 해놓음 수정 필요
+  },
 
 
 

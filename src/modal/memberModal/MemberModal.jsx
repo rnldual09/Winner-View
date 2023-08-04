@@ -6,7 +6,7 @@ import MemberModalContent from './MemberModalContent';
 
 const MemberModal = (props) => {
 
-  const { visible, onRequestClose, usrId, possibleCnt, modalMateList, setModalMateList } = props;
+  const { visible, onRequestClose, usrId, possibleCnt, teamMembers, setTeamMembers, setPossibleCnt } = props;
 
   const[searchMateId, setSearchMateId] = useState(''); // 검색조건 친구ID/명
 
@@ -15,7 +15,6 @@ const MemberModal = (props) => {
   };
 
   const touchScreen = (event) => {
-    console.log('Tlqkf');
     // 부모 pressable 클릭시에만
     if(event.target == event.currentTarget) {
       onRequestClose((state) => !state);
@@ -54,8 +53,10 @@ const MemberModal = (props) => {
               usrId={usrId}              
               searchMateId={searchMateId}            
               possibleCnt={possibleCnt}            
-              modalMateList={modalMateList}
-              setModalMateList={setModalMateList}
+              teamMembers={teamMembers}
+              setTeamMembers={setTeamMembers}
+              onRequestClose={onRequestClose}
+              setPossibleCnt={setPossibleCnt}
             />
         </View>
       </Pressable>
