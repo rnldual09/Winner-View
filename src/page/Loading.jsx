@@ -3,27 +3,15 @@ import { View, Image, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Util from '../util/Util';
-import DeviceInfo from 'react-native-device-info';
 
 const Loading = () => {
 
   const navigation = useNavigation();
   
   useEffect(() => {
-    //getDeviceInfo();
+    
     movePage();
   }, []);
-
-  // 기기 고유 아이디 가져오기
-  const getDeviceInfo = () => {    
-    DeviceInfo.getUniqueId().then((uniqueId) => {
-      // 기기 고유 아이디 가져오기 성공 시 자동로그인 저장여부 가져옴
-      getUserAutoLoginYn(uniqueId);
-    }).catch((error) => {
-      moveNextPage('login')
-      console.log(error);
-    });
-  };
 
   // 자동로그인 저장여부 가져오기
   const getUserAutoLoginYn = async (uniqueId) => {
