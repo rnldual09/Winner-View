@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, TouchableOpacity, View } from 'react-native';
-import areaModalStyles from '../areaModal/areaModalStyles';
+import areaModalStyles from './areaModalStyles';
 
 const ModalCloseBtn = (props) => {
 

@@ -1,69 +1,87 @@
-import React, { useState } from 'react';
-import { View, Pressable, Modal, Text, TouchableOpacity, ScrollView } from 'react-native';
-import modalStyles from '../../style/modalStyles';
-import commonStyles from '../../style/commonStyles';
+import React from 'react';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import areaModalStyles from './areaModalStyles';
 
 const AreaModalContent = (props) => {
        
   const { contentArr, setParentCod, setChildCod, parentCod, childCod, childCodNm, setParentCodNm, setChildCodNm, step, setHeaderTitle } = props;
-  const[max, setMax] = useState(0);
 
-  const returnContentStyle = (param) => {
+  // 선택한 버튼 디자인 변경 param : 클릭한 버튼의 코드
+  const returnButtonStyle = (param) => {
     
-    const vali = step == 'first' ? parentCod.indexOf(param) : childCod.indexOf(param);
+    let idx = -1;
+
+    if(step == '1') {
+      idx = parentCod.indexOf(param);
+    } else {
+      idx = childCod.indexOf(param);
+    }
     
-    if(vali != -1) return modalStyles().areaContentPicked;
-    else return modalStyles().areaContent;
+    if(idx != -1) {
+      return areaModalStyles().areaButtonPicked;
+    } else {
+      return areaModalStyles().areaButtonNotPicked;
+    } 
   }
 
-  const returnContentStyle2 = (param) => {
+  // 선택한 버튼의 텍스트 디자인 변경 param : 클릭한 버튼의 코드
+  const returnTextStyle = (param) => {
 
-    const vali = step == 'first' ? parentCod.indexOf(param) : childCod.indexOf(param);
+    let idx = -1;
 
-    if(vali != -1) return commonStyles(1.4).Font_fff;
-    else return commonStyles(1.4).Font_999;
+    if(step == '1') {
+      idx = parentCod.indexOf(param);
+    } else {
+      idx = childCod.indexOf(param);
+    }
+    
+    if(idx != -1) {
+      return areaModalStyles().areaTextPicked;
+    } else {
+      return areaModalStyles().areaTextNotPicked;
+    } 
   }
 
   const contentClick = (itemCodCd, itemCodNm) => {
     
-    if(step == 'first') {
+    if(step == '1') {
       setParentCod(itemCodCd);
-      setHeaderTitle(itemCodNm);
       setParentCodNm(itemCodNm);
-    }
+      setHeaderTitle(itemCodNm);
+    } else {
 
-    if(step == 'second') {
+      // 선택내역이 있다면 추가
       if(childCod.indexOf(itemCodCd) == -1) {
 
-        if(max == 3) {
+        const length = childCod.split("/").length;
+        
+        if(length == 4) {
           alert('최대 3개 까지만 선택가능합니다');
         } else {
           setChildCod(childCod + itemCodCd + '/');
           setChildCodNm(childCodNm + itemCodNm + '/')
-          setMax((cnt) => cnt + 1);
         }
+      // 선택내역이 없다면 제거
       } else {
         const tempCodVal = childCod.replace(itemCodCd+'/', '');
         setChildCod(tempCodVal);
 
         const tempCodNm = childCodNm.replace(itemCodNm+'/', '');
         setChildCodNm(tempCodNm);
-
-        setMax((cnt) => cnt - 1);
       }
-    }
+    } 
   };
 
   return (    
     <ScrollView style={{height:200, width:'100%'}}>
-      <View style={modalStyles().areaContentContainer}>
+      <View style={areaModalStyles().areaContentContainer}>
         {contentArr.map((item, index) => (            
           <TouchableOpacity
             key={index}
-            style={returnContentStyle(item.codCd)}
+            style={returnButtonStyle(item.codCd)}
             onPress={() => contentClick(item.codCd, item.codNm)}
           >
-            <Text style={returnContentStyle2(item.codCd)}>{item.codNm} {item.cnt}건</Text>               
+            <Text style={returnTextStyle(item.codCd)}>{item.codNm} {item.cnt}건</Text>               
           </TouchableOpacity>
         ))}
       </View>

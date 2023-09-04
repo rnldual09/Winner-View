@@ -119,23 +119,8 @@ const modalStyles = (param) => StyleSheet.create({
 
 
   
-  dateHeaderContainer:{
-    flexDirection:'row',
-    alignItems:'center',
-    justifyContent:'center',
-    width:'60%'    
-  },
-  dateHeaderYearMonth:{
-    alignItems:'center',
-    justifyContent:'center',
-    width:'50%',
-    flexDirection:param,
-  },
-  leftRigntBtn:{
-    width:RFPercentage(2),
-    height:RFPercentage(2),
-    opacity:param
-  },
+  
+  
   week:{
     width:'15%',
     alignItems:'center',

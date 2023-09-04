@@ -1,38 +1,43 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import modalStyles from '../../style/modalStyles';
-import commonStyles from '../../style/commonStyles';
+import areaModalStyles from './areaModalStyles';
 
 const AreaModalFooter = (props) => {
 
-  const { step, settingStep, areaFinish } = props;
+  const { step, setStep, areaFinish, parentCod, childCod } = props;
 
   return (
-    <View style={modalStyles().modalFooterContainer}>
-      {step == 'first' ?
+    <View style={areaModalStyles().modalFooterContainer}>
+      {step == '1' ?
         (
-          <TouchableOpacity
-            style={modalStyles().nextBtn2}
-            onPress={() => settingStep('second')}
-          >
-            <Text style={commonStyles(1.8).Font_fff}>다음</Text>
-          </TouchableOpacity>
+          <>
+            {parentCod != '' ? (
+              <TouchableOpacity
+                style={areaModalStyles().nextBtn}
+                onPress={() => setStep('2')}
+              >
+                <Text style={areaModalStyles().nextText}>다음</Text>
+              </TouchableOpacity>
+            ) : null}          
+          </>
         )
       :
         (
-          <View style={modalStyles().footerContainer}>
+          <View style={areaModalStyles().footerBtnContainer}>
             <TouchableOpacity
-              style={modalStyles().nextBtn1}
-              onPress={() => settingStep('first')}
+              style={areaModalStyles().beforeBtn}
+              onPress={() => setStep('1')}
             >
-              <Text style={commonStyles(1.8).Font_000}>이전</Text>
+              <Text style={areaModalStyles().beforeText}>이전</Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              style={modalStyles().nextBtn2}
-              onPress={() => areaFinish()}
-            >
-              <Text style={commonStyles(1.8).Font_fff}>선택</Text>
-            </TouchableOpacity>  
+            {childCod != '' ? (
+              <TouchableOpacity
+                style={areaModalStyles().nextBtn}
+                onPress={() => areaFinish()}
+              >
+                <Text style={areaModalStyles().nextText}>선택</Text>
+              </TouchableOpacity>  
+            ) : null}            
           </View>
         )}
       

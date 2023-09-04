@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import modalStyles from '../../style/modalStyles';
-import commonStyles from '../../style/commonStyles';
+import dateModalStyles from './dateModalStyles';
 import DateUtil from '../../util/DateUtil';
 import DateContentWeek from './DateContentWeek';
 
 const DateContent = (props) => {
 
-  const { setDay, month, onRequestClose, setSuccess } = props;
+  const { setDay, month } = props;
   
   const [dateContent, setDateContent] = useState([{}]);
 
@@ -25,23 +24,23 @@ const DateContent = (props) => {
   // 달력날짜 클릭
   const clickDay = (paramDay) => {
     
-    if(checkParamDay(paramDay)) {
+    if(dayValidation(paramDay)) {
       setDay(paramDay);
-      setSuccess(true);
-      onRequestClose((state) => !state);
     }
   };
 
-  // 넘겨받은 일이 오늘 일수보다 적다면 불투명한 디자인으로 리턴
+  // 각 컴포넌트의 날짜가 오늘날짜 보다 이전이라면 불투명한 디자인으로 변경(주말제외)
   const textDayStyles = (paramDay) => {
 
-    if(checkParamDay(paramDay)) return commonStyles(1.7).Font_000;
-
-    return commonStyles(1.7).Font_999;
+    if(dayValidation(paramDay)) {
+      return dateModalStyles('#000').dayText;
+    } else {
+      return dateModalStyles('#999').dayText; 
+    }    
   };
 
-  // 입력받은 날짜가 오늘보다 이전이후 인지 판별
-  const checkParamDay = (paramDay) => {
+  // 입력받은 날짜가 오늘보다 이전 또는 이후 인지 판별
+  const dayValidation = (paramDay) => {
   
     const nowMonth = (new Date()).getMonth() + 1;   // 오늘달
     const nowDay = (new Date()).getDate();          // 오늘날짜
@@ -53,54 +52,54 @@ const DateContent = (props) => {
   };
 
   return (
-    <View style={modalStyles().dateContentContainer}>
+    <View style={dateModalStyles().dateContentContainer}>
       <DateContentWeek />
       {dateContent.map((item, index) => (
         <View
-          style={modalStyles('14.7%').dateContentSubContainer}
+          style={dateModalStyles().dateContentSubContainer}
           key={index}
         >
           <TouchableOpacity
-            style={modalStyles().week}
+            style={dateModalStyles().days}
             onPress={() => clickDay(item.sun)}
           >
-            <Text style={commonStyles(1.7).Font_red}>{item.sun}</Text>  
+            <Text style={dateModalStyles('red').dayText}>{item.sun}</Text>  
           </TouchableOpacity>
           <TouchableOpacity
-            style={modalStyles().date}
+            style={dateModalStyles().days}
             onPress={() => clickDay(item.mon)}
           >
             <Text style={textDayStyles(item.mon)}>{item.mon}</Text>  
           </TouchableOpacity>
           <TouchableOpacity
-            style={modalStyles().date}
+            style={dateModalStyles().days}
             onPress={() => clickDay(item.tue)}
           >
             <Text style={textDayStyles(item.tue)}>{item.tue}</Text>  
           </TouchableOpacity>
           <TouchableOpacity
-            style={modalStyles().date}
+            style={dateModalStyles().days}
             onPress={() => clickDay(item.wed)}
           >
             <Text style={textDayStyles(item.wed)}>{item.wed}</Text>  
           </TouchableOpacity>
           <TouchableOpacity
-            style={modalStyles().date}
+            style={dateModalStyles().days}
             onPress={() => clickDay(item.thu)}
           >
             <Text style={textDayStyles(item.thu)}>{item.thu}</Text>  
           </TouchableOpacity>
           <TouchableOpacity
-            style={modalStyles().date}
+            style={dateModalStyles().days}
             onPress={() => clickDay(item.fri)}
           >
             <Text style={textDayStyles(item.fri)}>{item.fri}</Text>  
           </TouchableOpacity>
           <TouchableOpacity
-            style={modalStyles().date}
+            style={dateModalStyles().days}
             onPress={() => clickDay(item.sat)}
           >
-            <Text style={commonStyles(1.7).Font_1a8cff}>{item.sat}</Text>  
+            <Text style={dateModalStyles('#1a8cff').dayText}>{item.sat}</Text>  
           </TouchableOpacity>
         </View>
       ))}

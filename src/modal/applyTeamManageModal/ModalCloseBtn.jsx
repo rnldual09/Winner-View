@@ -1,17 +1,17 @@
 import React from 'react';
 import { Image, TouchableOpacity, View } from 'react-native';
-import areaModalStyles from '../areaModal/areaModalStyles';
+import applyTeamManageModalStyles from './applyTeamManageModalStyles';
 
 const ModalCloseBtn = (props) => {
 
   const { onRequestClose } = props
 
   return (
-    <View style={areaModalStyles().modalCloseBtnContainer}>
+    <View style={applyTeamManageModalStyles().modalCloseBtnContainer}>
       <TouchableOpacity onPress={() => onRequestClose((state) => !state)}>
         <Image 
           source={require('../../assets/icon/xIcon.png')}
-          style={areaModalStyles().modalCloseBtn}
+          style={applyTeamManageModalStyles().modalCloseBtn}
         />
       </TouchableOpacity>
     </View>

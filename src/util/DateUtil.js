@@ -76,6 +76,20 @@ const returnDateContent = (paramMonth) => {
     return result; 
 };
 
-const DateUtil = { returnDateContent };
+// 오늘날짜 채번
+const returnYYYYMMDD = () => {
+    const date = new Date();
+  
+    const year = date.getFullYear();
+    let month = date.getMonth()+1;
+    let day = date.getDate();
+  
+    if(month < 10) { month = '0' + month; }
+    if(day < 10) { day = '0' + day; }
+    
+    return year.toString() + month.toString() + day.toString();
+  };
+
+const DateUtil = { returnDateContent, returnYYYYMMDD };
 
 export default DateUtil;

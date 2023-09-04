@@ -7,7 +7,6 @@ import Main from '../page/Main';
 import Regist1 from '../page/Regist1';
 import Regist2 from '../page/Regist2';
 import Regist3 from '../page/Regist3';
-import Regist4 from '../page/Regist4';
 import Apply from '../page/Apply';
 import Login from '../page/Login';
 import SignUp1 from '../page/SignUp1';
@@ -21,11 +20,12 @@ import FindPW2 from "../page/FindPW2";
 import FindPW3 from "../page/FindPW3";
 import FindPW4 from "../page/FindPW4";
 import MyPage from '../page/Mypage';
-import MyPost from '../page/MyPost';
+import PostManage from '../page/PostManage';
 import PostFilter from '../page/PostFilter';
 import Mate from '../page/Mate';
 import Loading from '../page/Loading';
 import Comment from '../page/Comment';
+import ApplyManage from '../page/ApplyManage';
 
 const RootStack = createStackNavigator();
 const BottomStack = createBottomTabNavigator();
@@ -61,11 +61,6 @@ const Router = () => {
       <RootStack.Screen 
         name="게시글작성3"
         component={Regist3}
-        options={{headerShown:true}}
-      />
-      <RootStack.Screen 
-        name="게시글작성4"
-        component={Regist4}
         options={{headerShown:true}}
       />
       <RootStack.Screen 
@@ -130,7 +125,7 @@ const Router = () => {
       />
       <RootStack.Screen 
         name="게시글관리"
-        component={MyPost}
+        component={PostManage}
         options={{headerShown:true}}
       />
       <RootStack.Screen 
@@ -146,6 +141,11 @@ const Router = () => {
       <RootStack.Screen 
         name="댓글"
         component={Comment}
+        options={{headerShown:true}}
+      />
+      <RootStack.Screen 
+        name="신청인원관리"
+        component={ApplyManage}
         options={{headerShown:true}}
       />
     </RootStack.Navigator>
