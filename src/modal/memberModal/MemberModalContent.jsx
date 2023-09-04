@@ -77,7 +77,7 @@ const checkImg = (mateId) => {
 const bringBtnClick = () => {
     let membersArr = [...teamMembers]; //객체 복사
     selMateList.map((item,index) => {
-      membersArr.push({memId : item.mateId, memNm : item.mateNm});
+      membersArr.push({memId : item.mateId, memNm : item.mateNm, memGrd : ''});
     });
     setTeamMembers(membersArr);
     setPossibleCnt(possibleCnt-selMateList.length)

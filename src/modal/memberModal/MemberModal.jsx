@@ -10,10 +10,6 @@ const MemberModal = (props) => {
 
   const[searchMateId, setSearchMateId] = useState(''); // 검색조건 친구ID/명
 
-  const onChangeMateId = (mateId) => {
-    setSearchMateId(mateId);
-  };
-
   const touchScreen = (event) => {
     // 부모 pressable 클릭시에만
     if(event.target == event.currentTarget) {
@@ -42,10 +38,10 @@ const MemberModal = (props) => {
               style={{
                 borderWidth: 1,
                 margin: 10,
-                width: 250
+                width: '70%'
               }}
               value={searchMateId}
-              onChangeText={(text) => onChangeMateId(text)}
+              onChangeText={(text) => setSearchMateId(text)}
               placeholder="친구 ID/이름"
             />
           </View>

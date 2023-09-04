@@ -4,6 +4,7 @@ import commonStyles from '../style/commonStyles';
 import Util from '../util/Util';
 import ApplyGubun from '../component/apply/ApplyGubun';
 import ApplyContent from '../component/apply/ApplyContent';
+import { useNavigation } from '@react-navigation/native';
 
 const Apply = ({ route }) => {
 
@@ -11,6 +12,7 @@ const Apply = ({ route }) => {
     getPostInfo();
   }, [])
 
+  const navigation = useNavigation();
   const postSeq = route.params.postSeq;
 
   const [person, setPerson] = useState(false); //개인 클릭 여부
@@ -19,15 +21,36 @@ const Apply = ({ route }) => {
   const [teamYn, setTeamYn] = useState('N');  // 팀여부
   const [teamMinCnt, setTeamMinCnt] = useState(0);  // 팀 최소인원
   const [teamMaxCnt, setTeamMaxCnt] = useState(0);  // 팀 최대인원
+  const [grdList, setGrdList] = useState([{}]);  // 등급 리스트
+  const [grdCombo, setGrdCombo] = useState([]);
 
   const getPostInfo = async () => {
-    const url = '/post/getPostInfo.do';
-    const data = {'postSeq':postSeq};
-    const post = await Util.fetchWithNotToken(url, data);
+    const usrInfo = await Util.getUsrInfo();
+    const url1 = '/app/postAppExist.do';
+    const data1 = {
+      'postSeq':postSeq,
+      'usrId':usrInfo.usrId
+    };
+    
+    const existCnt = await Util.fetchWithNotToken(url1, data1);
+    if(existCnt != 0){
+      alert('이미 신청한 게시글입니다.');
+      navigation.navigate('메인');
+    }
+
+    const url2 = '/post/getPostInfo.do';
+    const data2 = {'postSeq':postSeq};
+    const post = await Util.fetchWithNotToken(url2, data2);
     setPerYn(post.postInfo.perYn);
     setTeamYn(post.postInfo.teamYn);
     setTeamMinCnt(post.postInfo.teamMinCnt);
     setTeamMaxCnt(post.postInfo.teamMaxCnt);
+    setGrdList(post.grdList);
+
+    post.grdList.forEach((item, index) => {
+      grdCombo.push({key : item.grdSeq, value : item.grdNm});
+    });
+    setGrdCombo(grdCombo);
 
     if(post.postInfo.perYn != 'N'){
       setPerson(true);
@@ -51,10 +74,13 @@ const Apply = ({ route }) => {
               setTeam={setTeam}
             />
             <ApplyContent 
+              postSeq={postSeq}
               person={person}
               team={team}
               teamMinCnt={teamMinCnt}
               teamMaxCnt={teamMaxCnt}
+              grdList={grdList}
+              grdCombo={grdCombo}
             />  
         </View>
       </View>
