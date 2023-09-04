@@ -15,9 +15,9 @@ const Apply = ({ route }) => {
   const navigation = useNavigation();
   const postSeq = route.params.postSeq;
 
-  const [person, setPerson] = useState(false); //개인 클릭 여부
+  const [person, setPerson] = useState(true); //개인 클릭 여부
   const [team, setTeam] = useState(false); //팀 클릭 여부
-  const [perYn, setPerYn] = useState('N');   // 개인여부
+  const [perYn, setPerYn] = useState('Y');   // 개인여부
   const [teamYn, setTeamYn] = useState('N');  // 팀여부
   const [teamMinCnt, setTeamMinCnt] = useState(0);  // 팀 최소인원
   const [teamMaxCnt, setTeamMaxCnt] = useState(0);  // 팀 최대인원
@@ -52,10 +52,7 @@ const Apply = ({ route }) => {
     });
     setGrdCombo(grdCombo);
 
-    if(post.postInfo.perYn != 'N'){
-      setPerson(true);
-      setTeam(false);
-    }else{
+    if(post.postInfo.perYn == 'N'){
       setPerson(false);
       setTeam(true);
     }
