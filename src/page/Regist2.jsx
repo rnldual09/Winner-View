@@ -21,8 +21,8 @@ const Regist2 = ({route}) => {
   const[endDt, setEndDt] = useState('');              // 마감날짜
   const[perYn, setPerYn] = useState('Y');             // 개인여부
   const[teamYn, setTeamYn] = useState('Y');           // 팀여부
-  const[teamMinCnt, setTeamMinCnt] = useState(0);    // 팀최소인원
-  const[teamMaxCnt, setTeamMaxCnt] = useState(0);    // 팀 최대인원
+  const[teamMinCnt, setTeamMinCnt] = useState();    // 팀최소인원
+  const[teamMaxCnt, setTeamMaxCnt] = useState();    // 팀 최대인원
   
   const goNextStep = () => { 
 
@@ -76,23 +76,22 @@ const Regist2 = ({route}) => {
       alert('마감날짜를 입력 해주세요');
       return false;
     }
-
-    if(perYn == 'Y' && teamYn == 'N') {
+    
+    if(perYn != 'Y') {
       if(teamMinCnt == 0) {
-        alert('팀 인원수를 입력 해주세요');
-        return false;
-      }      
-    } else {
-      if(teamMinCnt > teamMaxCnt) {
-        alert('팀 최소 인원수가 최대 인원수를 넘을 수 없습니다 다시 입력 해주세요');
+        alert('팀 최소 인원수를 입력 해주세요');
         return false;
       }
       if(teamMaxCnt == 0) {
         alert('팀 최대 인원수를 입력 해주세요');
         return false;
+      }          
+      if(teamMinCnt > teamMaxCnt) {
+        alert('팀 최소 인원수가 최대 인원수를 넘을 수 없습니다 다시 입력 해주세요');
+        return false;
       }
     }
-
+    
     return true;
   };
 

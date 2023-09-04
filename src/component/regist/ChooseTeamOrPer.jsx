@@ -9,22 +9,18 @@ const ChooseTeamOrPer = (props) => {
   const[type, setType] = useState('');
 
   useEffect(() => {
-
     if(perYn == 'Y' && teamYn == 'Y') {
       setType('all');
+      setTeamMinCnt(0);
+    setTeamMaxCnt(0);
     } else if(perYn == 'Y' && teamYn == 'N') {
       setType('per');
     } else {
-      setType('team')
-    }
-    setTeamMinCnt(0);
-    setTeamMaxCnt(0);
+      setType('team');
+      setTeamMinCnt(0);
+      setTeamMaxCnt(0);
+    }    
   },[teamYn, perYn]);
-
-  const plusPerCnt = () => {
-    setTeamMinCnt((cnt) => cnt + 1);
-    setTeamMaxCnt((cnt) => cnt + 1);
-  };
 
   const plusTeamMinCnt = () => {
     setTeamMinCnt((cnt) => cnt + 1);
@@ -32,11 +28,6 @@ const ChooseTeamOrPer = (props) => {
 
   const plusTeamMaxCnt = () => {
     setTeamMaxCnt((cnt) => cnt + 1);
-  };
-
-  const minusPerCnt = () => {
-    setTeamMinCnt((cnt) => cnt - 1);
-    setTeamMaxCnt((cnt) => cnt - 1);
   };
 
   const minusTeamMinCnt = () => {
@@ -72,16 +63,7 @@ const ChooseTeamOrPer = (props) => {
           <Text style={type == 'per' ? registStyles().teamOrPerSelectedText : registStyles().openYnNotSelectText}>개인</Text>
         </TouchableOpacity>        
       </View>
-      {type == 'per' ? (
-        <>          
-          <ChooseTeamCnt
-            text={'팀 인원수'}
-            plusFunc={plusPerCnt}
-            minusFunc={minusPerCnt}
-            cnt={teamMinCnt}
-          />
-        </>
-      ) : (
+      {type != 'per' ? (
         <>
           <ChooseTeamCnt
             text={'팀 최소 인원수'}
@@ -96,7 +78,7 @@ const ChooseTeamOrPer = (props) => {
             cnt={teamMaxCnt}
           />
         </>
-      )}      
+      ) : (null)}      
     </View>
   );  
 }

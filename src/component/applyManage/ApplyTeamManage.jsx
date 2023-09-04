@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
 import applyManageStyles from '../../style/applyManageStyles';
 import ApplyManageCnf from './ApplyManageCnf';
@@ -7,10 +7,29 @@ import ApplyTeamManageModal from '../../modal/applyTeamManageModal/ApplyTeamMana
 
 const ApplyTeamManage = (props) => {
 
-  const { applyTeamList, applyTeamListCnt, cnfYn, setCnfYn, getApplyTeamList } = props;
+  const { postSeq } = props;
+  
+  useEffect(() => {
+    getApplyTeamList();
+  },[cnfYn]);
+
+  const[applyTeamList, setApplyTeamList] = useState([]);      // 신청인원 리스트
+  const[applyTeamListCnt, setApplyTeamListCnt] = useState();  // 신청인원 갯수
+  const[strRownum, setStrRownum] = useState(1);               // 가져올 게시글 갯수
+  const[endRownum, setEndRownum] = useState(10);              // 가져올 게시글 갯수
+  const[cnfYn, setCnfYn] = useState('');
   const[teamSeqArr, setTeamSeqArr] = useState([]);
   const[visible, setVisible] = useState(false);
   const[modalData, setModalData] = useState({});
+
+  const getApplyTeamList = async () => {
+    const url = '/app/getApplyTeamList.do';
+    const data = {'postSeq':postSeq, 'strRownum':strRownum, 'endRownum':endRownum, 'cnfYn':cnfYn};
+
+    const response = await Util.fetchWithNotToken(url, data);
+    setApplyTeamList(response.applyTeamList);
+    setApplyTeamListCnt(response.applyTeamCnt);
+  };
 
   const pushSelTeamSeq = (teamSeq) => {
     
