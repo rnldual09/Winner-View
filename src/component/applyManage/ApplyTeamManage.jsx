@@ -3,35 +3,55 @@ import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
 import applyManageStyles from '../../style/applyManageStyles';
 import ApplyManageCnf from './ApplyManageCnf';
 import Util from '../../util/Util';
-import ApplyTeamManageModal from '../../modal/applyTeamManageModal/ApplyTeamManageModal';
 
 const ApplyTeamManage = (props) => {
 
   const { postSeq } = props;
   
   useEffect(() => {
-    getApplyTeamList();
-  },[cnfYn]);
+    getApplyInfoList();
+  },[]);
 
-  const[applyTeamList, setApplyTeamList] = useState([]);      // 신청인원 리스트
-  const[applyTeamListCnt, setApplyTeamListCnt] = useState();  // 신청인원 갯수
+  const[totPerCnt, setTotPerCnt] = useState();                // 개인신청 수
+  const[totTeamCnt, setTotTeamCnt] = useState();              // 팀신청 수 
+  const[totMemCnt, setTotMemCnt] = useState();                // 전체인원 수 
+  const[applyTotUsrList, setApplyTotUsrList] = useState([]);  // 신청리스트
   const[strRownum, setStrRownum] = useState(1);               // 가져올 게시글 갯수
   const[endRownum, setEndRownum] = useState(10);              // 가져올 게시글 갯수
-  const[cnfYn, setCnfYn] = useState('');
-  const[teamSeqArr, setTeamSeqArr] = useState([]);
-  const[visible, setVisible] = useState(false);
-  const[modalData, setModalData] = useState({});
+  const[cnfYn, setCnfYn] = useState('Y');                     // 확정 또는 신청
+  const[teamSeqArr, setTeamSeqArr] = useState([]);            // 확정 또는 신청에 필요한 팀 seq
+  const[moreSeqArr, setMoreSeqArr] = useState([]);            // 확정 또는 신청에 필요한 팀 seq
 
-  const getApplyTeamList = async () => {
-    const url = '/app/getApplyTeamList.do';
+  const getApplyInfoList = async () => {
+    const url = '/app/getApplyInfoList.do';
     const data = {'postSeq':postSeq, 'strRownum':strRownum, 'endRownum':endRownum, 'cnfYn':cnfYn};
 
     const response = await Util.fetchWithNotToken(url, data);
-    setApplyTeamList(response.applyTeamList);
-    setApplyTeamListCnt(response.applyTeamCnt);
+
+    setApplyTotUsrList(response.applyTotUsrList);
+
+    const appTotUsrCnt = response.appTotUsrCnt;
+    setTotPerCnt(appTotUsrCnt.totPerCnt);
+    setTotTeamCnt(appTotUsrCnt.totTeamCnt);
+    setTotMemCnt(appTotUsrCnt.totMemCnt);
   };
 
-  const pushSelTeamSeq = (teamSeq) => {
+  // 확정 또는 확정취소
+  const saveConfirmYn = async () => {
+
+    const paramCnfYn = cnfYn == 'N' ? 'Y' : 'N';
+    const url = '/app/saveConfirmYn.do';
+    const data = {'postSeq':postSeq, 'teamSeqArr':teamSeqArr, 'cnfYn':paramCnfYn};
+  
+    const response = await Util.fetchWithNotToken(url, data);    
+  
+    if(response.result) {
+      setTeamSeqArr([]);
+      getApplyInfoList();
+    }
+  };
+
+  const pushTeamSeq = (teamSeq) => {
     
     const tempTeamSeqArr = teamSeqArr.slice();
 
@@ -44,58 +64,71 @@ const ApplyTeamManage = (props) => {
     setTeamSeqArr(tempTeamSeqArr);
   };
 
-  // 확정 또는 확정취소
-  const saveConfirmYn = async () => {
-
-    const paramCnfYn = cnfYn == 'N' ? 'Y' : 'N';
-
-    const url = '/app/saveConfirmYn.do';
-    const data = {'postSeq':applyTeamList[0].postSeq, 'teamSeqArr':teamSeqArr, 'cnfYn':paramCnfYn};
+  const pushMoreSeq = (teamSeq) => {
     
-    const response = await Util.fetchWithNotToken(url, data);    
-    
-    if(response.result) {
-      setTeamSeqArr([]);
-      getApplyTeamList();
+    const tempMoreSeqArr = moreSeqArr.slice();
+
+    if(moreSeqArr.indexOf(teamSeq) == -1) {
+      tempMoreSeqArr.push(teamSeq);
+    } else {
+      tempMoreSeqArr.splice(moreSeqArr.indexOf(teamSeq), 1);
     }
-  };
 
-  const onRequestOpen = (paramApplyTeamData) => {
-    setModalData(paramApplyTeamData);
-    setVisible(true);
+    setMoreSeqArr(tempMoreSeqArr);
   };
-
-  const onRequestClose = () => {
-    setVisible(false);
-  };
-
+  
   const renderItem = (data) => {
-    
-    const applyTeamList = data.item;
-    
+
+    const ceoInfo = data.item.ceoInfo;
+    const applyTeamList = data.item.applyTeamList;
+
     return (
-      <View style={applyManageStyles().managerTeamContainer}>
-        {cnfYn != '' ? (
-          <TouchableOpacity
-            style={teamSeqArr.indexOf(applyTeamList.teamSeq) == -1 ? applyManageStyles().radioBtn1 : applyManageStyles().radioBtn2}
-            onPress={() => pushSelTeamSeq(applyTeamList.teamSeq)}
-          />
-        ) : null}        
-        <Image
-          style={applyManageStyles().ceoProfile}
-          source={{ uri: 'http://localhost:8080/common/usrProfile.do?imgFileName=' + applyTeamList.profile}}
-        />
-        <View>
-          <Text style={applyManageStyles().ceoInfo}>대표자명 : {applyTeamList.usrNm}</Text>
-          <Text style={applyManageStyles().ceoInfo}>대표자 번호 : {applyTeamList.usrPh}</Text>
-          <Text style={applyManageStyles().ceoInfo}>대표자 성별 : {applyTeamList.usrSex}</Text>
-        </View>
+      <View style={applyManageStyles().managerTeamContainer}>        
         <TouchableOpacity
-          style={applyManageStyles().moreBtn}
-          onPress={() => onRequestOpen(applyTeamList)}
-        >
-          <Text style={applyManageStyles().moreBtnText}>자세히</Text>
-        </TouchableOpacity>
+          style={teamSeqArr.indexOf(ceoInfo.teamSeq) == -1 ? applyManageStyles().radioBtn1 : applyManageStyles().radioBtn2}
+          onPress={() => pushTeamSeq(ceoInfo.teamSeq)}
+        />
+        {moreSeqArr.indexOf(ceoInfo.teamSeq) == -1 ? (
+          <>
+            <Image
+              style={applyManageStyles().ceoProfile}
+              source={{ uri: 'http://localhost:8080/common/usrProfile.do?imgFileName=' + ceoInfo.profile}}
+            />
+            <View>
+              <Text style={applyManageStyles().ceoInfo}>대표자명 : {ceoInfo.usrNm}</Text>
+              <Text style={applyManageStyles().ceoInfo}>대표자 번호 : {ceoInfo.usrPh}</Text>
+              <Text style={applyManageStyles().ceoInfo}>대표자 성별 : {ceoInfo.usrSex}</Text>
+              <Text style={applyManageStyles().ceoInfo}>신청명 : {ceoInfo.appType == 'PER' ? '개인신청' : ceoInfo.teamNm}</Text>
+              <Text style={applyManageStyles().ceoInfo}>신청 포지션 : {ceoInfo.grdNm}</Text>
+            </View>
+          </>
+        ) : (          
+          <>
+            {applyTeamList.map((item, index) => (
+              <View key={index}>
+                <Image
+                  style={applyManageStyles().ceoProfile}
+                  source={{ uri: 'http://localhost:8080/common/usrProfile.do?imgFileName=' + item.profile}}
+                />
+                <View>
+                  <Text style={applyManageStyles().ceoInfo}>대표자명 : {item.usrNm}</Text>
+                  <Text style={applyManageStyles().ceoInfo}>대표자 번호 : {item.usrPh}</Text>
+                  <Text style={applyManageStyles().ceoInfo}>대표자 성별 : {item.usrSex}</Text>
+                  <Text style={applyManageStyles().ceoInfo}>신청명 : {item.appType == 'PER' ? '개인신청' : item.teamNm}</Text>
+                  <Text style={applyManageStyles().ceoInfo}>신청 포지션 : {item.grdNm}</Text>
+                </View>
+              </View>
+            ))}   
+          </>
+        )}
+        {ceoInfo.appType == 'TEAM' ? (
+          <TouchableOpacity
+            style={applyManageStyles().moreBtn}
+            onPress={() => pushMoreSeq(ceoInfo.teamSeq)}
+          >
+            <Text style={applyManageStyles().moreBtnText}>자세히</Text>
+          </TouchableOpacity>
+        ) : null}        
       </View>
     ); 
   };
@@ -103,21 +136,19 @@ const ApplyTeamManage = (props) => {
   return (
     <>
       <ApplyManageCnf
-        applyTeamListCnt={applyTeamListCnt}
+        totPerCnt={totPerCnt}
+        totTeamCnt={totTeamCnt}
+        totMemCnt={totMemCnt}
         cnfYn={cnfYn}
         setCnfYn={setCnfYn}
+        getApplyInfoList={getApplyInfoList}
         saveConfirmYn={saveConfirmYn}
       />
       <FlatList
-        data={applyTeamList}
+        data={applyTotUsrList}
         renderItem={renderItem}
-        keyExtractor={item => item.teamSeq}
-      />      
-      <ApplyTeamManageModal
-        visible={visible}
-        onRequestClose={onRequestClose}
-        applyTeamData={modalData}
-      />
+        keyExtractor={item => item.ceoInfo.usrId}
+      />     
     </>
   );  
 }

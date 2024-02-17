@@ -117,7 +117,9 @@ const applyManageStyles = (params) => StyleSheet.create({
     paddingHorizontal:windowWidth * 0.03,
     paddingVertical:windowHeight * 0.008,
     marginVertical:windowHeight * 0.005,
-    width:'100%'
+    width:'100%',
+    borderColor:'#000',
+    borderWidth:1
   },
   radioBtn1:{
     borderColor:'#000',
@@ -133,8 +135,8 @@ const applyManageStyles = (params) => StyleSheet.create({
     borderRadius:100
   },
   ceoProfile:{
-    width:RFPercentage(6),
-    height:RFPercentage(6),
+    width:RFPercentage(10),
+    height:RFPercentage(10),
   },
   ceoInfo:{
     color:'#000',

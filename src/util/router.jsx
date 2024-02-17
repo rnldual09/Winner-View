@@ -26,6 +26,7 @@ import Mate from '../page/Mate';
 import Loading from '../page/Loading';
 import Comment from '../page/Comment';
 import ApplyManage from '../page/ApplyManage';
+import Tournament from '../page/Tournament';
 
 const RootStack = createStackNavigator();
 const BottomStack = createBottomTabNavigator();
@@ -146,6 +147,11 @@ const Router = () => {
       <RootStack.Screen 
         name="신청인원관리"
         component={ApplyManage}
+        options={{headerShown:true}}
+      />
+      <RootStack.Screen 
+        name="토너먼트"
+        component={Tournament}
         options={{headerShown:true}}
       />
     </RootStack.Navigator>
